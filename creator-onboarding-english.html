@@ -956,10 +956,10 @@
 
         async function sendToGoogleSheets(data) {
             // INSERT YOUR GOOGLE SHEETS WEB APP URL HERE
-            const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE';
+            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbqaIcu-l06cpd5D3yJlsvD-TsFA5XqlMiib2PKk-qvsHYWIhCwSrDKxeExmNNU0Zenw/exec';
 
             // Uncomment when ready:
-            /*
+      
             const response = await fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
                 mode: 'no-cors',
@@ -968,7 +968,7 @@
                 },
                 body: JSON.stringify(data)
             });
-            */
+           
 
             // For now, just log
             console.log('Data to send:', data);

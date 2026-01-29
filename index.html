@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Onboarding - Select Language</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #4a5568;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .language-selector {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        select {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.1em;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            color: #2d3748;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 24px;
+            padding-right: 50px;
+        }
+
+        select:hover {
+            border-color: #667eea;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .flag {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .logo {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1 data-translate="title">Creator Onboarding</h1>
+        <p data-translate="subtitle">Welcome! Please select your preferred language to get started.</p>
+
+        <div class="language-selector">
+            <label for="language" data-translate="selectLabel">Select Language</label>
+            <select id="language">
+                <option value="">-- <span data-translate="pleaseSelect">Please select</span> --</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="de">🇩🇪 Deutsch (German)</option>
+            </select>
+        </div>
+
+        <button id="continueBtn" disabled onclick="goToForm()">
+            <span data-translate="continueBtn">Continue</span> →
+        </button>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "Creator Onboarding",
+                subtitle: "Welcome! Please select your preferred language to get started.",
+                selectLabel: "Select Language",
+                pleaseSelect: "Please select",
+                continueBtn: "Continue"
+            },
+            de: {
+                title: "Creator Onboarding",
+                subtitle: "Willkommen! Bitte wähle deine bevorzugte Sprache, um zu beginnen.",
+                selectLabel: "Sprache wählen",
+                pleaseSelect: "Bitte wählen",
+                continueBtn: "Weiter"
+            }
+        };
+
+        const languageSelect = document.getElementById('language');
+        const continueBtn = document.getElementById('continueBtn');
+
+        // Detect browser language and set default
+        function detectLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('de')) {
+                languageSelect.value = 'de';
+                updatePageLanguage('de');
+                continueBtn.disabled = false;
+            }
+        }
+
+        // Update all text on the page based on selected language
+        function updatePageLanguage(lang) {
+            const translation = translations[lang];
+            if (!translation) return;
+
+            // Update all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translation[key]) {
+                    element.textContent = translation[key];
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Enable button when language is selected
+        languageSelect.addEventListener('change', function() {
+            if (this.value) {
+                continueBtn.disabled = false;
+                updatePageLanguage(this.value);
+            } else {
+                continueBtn.disabled = true;
+            }
+        });
+
+        // Allow Enter key to submit
+        languageSelect.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && this.value) {
+                goToForm();
+            }
+        });
+
+        function goToForm() {
+            const language = languageSelect.value;
+            
+            if (language === 'en') {
+                window.location.href = 'creator-onboarding-english.html';
+            } else if (language === 'de') {
+                window.location.href = 'creator-onboarding-german.html';
+            }
+        }
+
+        // Auto-detect language on page load
+        detectLanguage();
+    </script>
+</body>
+</html>

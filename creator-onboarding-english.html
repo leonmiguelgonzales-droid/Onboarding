@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Onboarding - Traffic & Marketing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image: 
+                linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%),
+                url('https://i.imgur.com/Q3gfUqC.jpeg');
+            background-size: cover, 50%;
+            background-position: center, center;
+            background-repeat: no-repeat, no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            background-image: url('https://i.imgur.com/Q3gfUqC.jpeg');
+            background-size: 40%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .welcome-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .welcome-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-size: 1em;
+        }
+
+        .question-label .required {
+            color: #e53e3e;
+        }
+
+        .question-hint {
+            display: block;
+            font-size: 0.85em;
+            color: #718096;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.2s ease;
+            background: white;
+            color: #2d3748;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px 28px;
+            font-size: 1.05em;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f7fafc;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .summary-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .summary-section {
+            margin-bottom: 25px;
+        }
+
+        .summary-item {
+            padding: 8px 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .summary-label {
+            font-weight: 600;
+            color: #2d3748;
+            display: inline-block;
+            min-width: 140px;
+        }
+
+        .qualification-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .qualification-badge.qualified {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .qualification-badge.needs-review {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .success-screen {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .success-screen h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .success-screen p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Perlage Creator Onboarding</h1>
+            <p>Your Path to Success - Let's Get Started!</p>
+        </div>
+
+        <div class="content">
+            <!-- Welcome Card -->
+            <div class="welcome-card">
+                <h2>👋 Welcome!</h2>
+                <p>We're excited to get to know you better. This questionnaire helps us understand your situation, goals, and technical setup so we can provide you with the best possible support.</p>
+                <p><strong>Please answer all questions honestly.</strong></p>
+                <p>⏱️ Time needed: approx. 5-7 minutes</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+                <div class="progress-text" id="progressText">Section 1 of 4</div>
+            </div>
+
+            <!-- Section 1: Personal Basics -->
+            <div class="section" data-section="1">
+                <div class="section-header">👤 Personal Basics</div>
+
+                <div class="question">
+                    <label class="question-label">
+                        How old are you? <span class="required">*</span>
+                    </label>
+                    <input type="number" id="age" min="18" max="99" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Which country do you live in? <span class="required">*</span>
+                    </label>
+                    <input type="text" id="country" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        What is your nationality? <span class="required">*</span>
+                    </label>
+                    <input type="text" id="nationality" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Height & Build <span class="required">*</span>
+                    </label>
+                    <span class="question-hint">E.g., "175 cm, athletic" or "5'9", curvy"</span>
+                    <input type="text" id="height_build" placeholder="E.g., 170 cm, slim" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Do you have tattoos or piercings?
+                    </label>
+                    <span class="question-hint">If yes, briefly describe which ones</span>
+                    <input type="text" id="tattoos_piercings" placeholder="E.g., small tattoo on wrist, nose piercing">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Relationship Status <span class="required">*</span>
+                    </label>
+                    <select id="relationship_status" required>
+                        <option value="">-- Please select --</option>
+                        <option value="single">Single</option>
+                        <option value="relationship">In a relationship</option>
+                        <option value="married">Married</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Living Situation <span class="required">*</span>
+                    </label>
+                    <select id="living_situation" required>
+                        <option value="">-- Please select --</option>
+                        <option value="alone">Living alone</option>
+                        <option value="with_partner">With partner</option>
+                        <option value="with_roommates">With roommates/WG</option>
+                        <option value="with_parents">With parents</option>
+                        <option value="with_family">With family</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-primary" onclick="nextSection(1)">Next →</button>
+                </div>
+            </div>
+
+            <!-- Section 2: Availability & Commitment -->
+            <div class="section hidden" data-section="2">
+                <div class="section-header">⏱️ Availability & Commitment</div>
+
+                <div class="question">
+                    <label class="question-label">
+                        How many hours per week can you dedicate to this? <span class="required">*</span>
+                    </label>
+                    <span class="question-hint">Please be realistic - we need min. 15-20 hours/week</span>
+                    <input type="number" id="hours_per_week" min="0" max="168" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        When are you most productive? <span class="required">*</span>
+                    </label>
+                    <select id="productive_times" required>
+                        <option value="">-- Please select --</option>
+                        <option value="morning">Morning (6-12)</option>
+                        <option value="afternoon">Afternoon (12-18)</option>
+                        <option value="evening">Evening (18-24)</option>
+                        <option value="night">Night (0-6)</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        On which days can you create content? <span class="required">*</span>
+                    </label>
+                    <span class="question-hint">E.g., "Mon-Fri" or "Weekend" or "Daily"</span>
+                    <input type="text" id="content_days" placeholder="E.g., Mon, Wed, Fri or Daily" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Do you have another job? <span class="required">*</span>
+                    </label>
+                    <select id="has_job" required onchange="toggleJobHours()">
+                        <option value="">-- Please select --</option>
+                        <option value="no">No</option>
+                        <option value="yes_fulltime">Yes, full-time</option>
+                        <option value="yes_parttime">Yes, part-time</option>
+                        <option value="yes_student">Yes, I'm a student</option>
+                    </select>
+                </div>
+
+                <div class="question hidden" id="job_hours_container">
+                    <label class="question-label">
+                        How many hours per week do you work there?
+                    </label>
+                    <input type="number" id="job_hours" min="0" max="80">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        How long are you planning to do OnlyFans? <span class="required">*</span>
+                    </label>
+                    <select id="commitment_duration" required>
+                        <option value="">-- Please select --</option>
+                        <option value="3-6months">3-6 months</option>
+                        <option value="6-12months">6-12 months</option>
+                        <option value="1year+">1 year or longer</option>
+                        <option value="longterm">Long-term (indefinite)</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="previousSection(2)">← Back</button>
+                    <button type="button" class="btn-primary" onclick="nextSection(2)">Next →</button>
+                </div>
+            </div>
+
+            <!-- Section 3: Technical Equipment -->
+            <div class="section hidden" data-section="3">
+                <div class="section-header">📱 Technical Equipment</div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Which phone do you have? <span class="required">*</span>
+                    </label>
+                    <span class="question-hint">Model and year, e.g., "iPhone 13" or "Samsung S21"</span>
+                    <input type="text" id="phone_model" placeholder="E.g., iPhone 14 Pro" required>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Do you have a ring light? <span class="required">*</span>
+                    </label>
+                    <select id="has_ringlight" required onchange="toggleRinglightModel()">
+                        <option value="">-- Please select --</option>
+                        <option value="yes">Yes, I have one</option>
+                        <option value="willing">No, but willing to buy one</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="question hidden" id="ringlight_model_container">
+                    <label class="question-label">
+                        Which ring light model?
+                    </label>
+                    <input type="text" id="ringlight_model" placeholder="E.g., Neewer 18 inch">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Do you have a tripod? <span class="required">*</span>
+                    </label>
+                    <select id="has_tripod" required onchange="toggleTripodModel()">
+                        <option value="">-- Please select --</option>
+                        <option value="yes">Yes, I have one</option>
+                        <option value="willing">No, but willing to buy one</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="question hidden" id="tripod_model_container">
+                    <label class="question-label">
+                        Which tripod model?
+                    </label>
+                    <input type="text" id="tripod_model" placeholder="E.g., Manfrotto Compact">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Do you have a car? <span class="required">*</span>
+                    </label>
+                    <select id="has_car" required>
+                        <option value="">-- Please select --</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Do you have a microphone? <span class="required">*</span>
+                    </label>
+                    <select id="has_microphone" required>
+                        <option value="">-- Please select --</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="previousSection(3)">← Back</button>
+                    <button type="button" class="btn-primary" onclick="nextSection(3)">Next →</button>
+                </div>
+            </div>
+
+            <!-- Section 4: Social Media -->
+            <div class="section hidden" data-section="4">
+                <div class="section-header">📲 Social Media</div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Instagram Username
+                    </label>
+                    <span class="question-hint">@ is not required</span>
+                    <input type="text" id="instagram" placeholder="E.g., johndoe">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        TikTok Username
+                    </label>
+                    <input type="text" id="tiktok" placeholder="E.g., @johndoe">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Twitter/X Username
+                    </label>
+                    <input type="text" id="twitter" placeholder="E.g., @johndoe">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        YouTube Channel
+                    </label>
+                    <input type="text" id="youtube" placeholder="Channel name or URL">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Other Platforms
+                    </label>
+                    <span class="question-hint">E.g., Twitch, Snapchat, etc.</span>
+                    <input type="text" id="other_platforms" placeholder="E.g., Twitch: johndoe">
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Social Media Experience <span class="required">*</span>
+                    </label>
+                    <select id="social_experience" required>
+                        <option value="">-- Please select --</option>
+                        <option value="none">No experience</option>
+                        <option value="beginner">Beginner (posted a few times)</option>
+                        <option value="intermediate">Intermediate (regular posts)</option>
+                        <option value="advanced">Advanced (active content creation)</option>
+                        <option value="professional">Professional (monetized)</option>
+                    </select>
+                </div>
+
+                <div class="question">
+                    <label class="question-label">
+                        Geo-Blocking Preferences
+                    </label>
+                    <span class="question-hint">Countries/regions you want to block (optional)</span>
+                    <input type="text" id="geo_blocking" placeholder="E.g., Germany, Austria">
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="previousSection(4)">← Back</button>
+                    <button type="button" class="btn-primary" onclick="showSummary()">Review Summary →</button>
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="section hidden" id="summarySection">
+                <div class="section-header">📋 Summary of Your Information</div>
+
+                <div id="summaryContent"></div>
+                <div id="qualificationCheck"></div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-secondary" onclick="editForm()">✏️ Edit</button>
+                    <button type="button" class="btn-secondary" onclick="copyToClipboard()">📋 Copy</button>
+                    <button type="button" class="btn-primary" onclick="submitForm()">✅ Submit</button>
+                </div>
+            </div>
+
+            <!-- Success Screen -->
+            <div class="section hidden" id="successScreen">
+                <div class="success-screen">
+                    <div class="success-icon">🎉</div>
+                    <h2>Successfully Submitted!</h2>
+                    <p>Thank you for taking the time to fill out the questionnaire!</p>
+                    <p>We'll review your information and get back to you soon.</p>
+                    <p><strong>What's next?</strong></p>
+                    <p>We'll reach out to you via WhatsApp within 24-48 hours to discuss the next steps.</p>
+                    <div style="margin-top: 30px;">
+                        <button class="btn-primary" onclick="location.reload()">Submit Another Response</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 4;
+        let formData = {};
+
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Section ${currentSection} of ${totalSections}`;
+        }
+
+        function toggleJobHours() {
+            const hasJob = document.getElementById('has_job').value;
+            const container = document.getElementById('job_hours_container');
+            if (hasJob && hasJob !== 'no') {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+                document.getElementById('job_hours').value = '';
+            }
+        }
+
+        function toggleRinglightModel() {
+            const hasRinglight = document.getElementById('has_ringlight').value;
+            const container = document.getElementById('ringlight_model_container');
+            if (hasRinglight === 'yes') {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+                document.getElementById('ringlight_model').value = '';
+            }
+        }
+
+        function toggleTripodModel() {
+            const hasTripod = document.getElementById('has_tripod').value;
+            const container = document.getElementById('tripod_model_container');
+            if (hasTripod === 'yes') {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+                document.getElementById('tripod_model').value = '';
+            }
+        }
+
+        function validateSection(sectionNum) {
+            const section = document.querySelector(`[data-section="${sectionNum}"]`);
+            const requiredInputs = section.querySelectorAll('[required]');
+            
+            for (let input of requiredInputs) {
+                if (!input.value.trim()) {
+                    input.focus();
+                    alert('⚠️ Please fill in all required fields (marked with *)');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function saveFormData() {
+            // Section 1
+            formData.age = document.getElementById('age').value;
+            formData.country = document.getElementById('country').value;
+            formData.nationality = document.getElementById('nationality').value;
+            formData.height_build = document.getElementById('height_build').value;
+            formData.tattoos_piercings = document.getElementById('tattoos_piercings').value;
+            formData.relationship_status = document.getElementById('relationship_status').value;
+            formData.living_situation = document.getElementById('living_situation').value;
+
+            // Section 2
+            formData.hours_per_week = document.getElementById('hours_per_week').value;
+            formData.productive_times = document.getElementById('productive_times').value;
+            formData.content_days = document.getElementById('content_days').value;
+            formData.has_job = document.getElementById('has_job').value;
+            formData.job_hours = document.getElementById('job_hours').value;
+            formData.commitment_duration = document.getElementById('commitment_duration').value;
+
+            // Section 3
+            formData.phone_model = document.getElementById('phone_model').value;
+            formData.has_ringlight = document.getElementById('has_ringlight').value;
+            formData.ringlight_model = document.getElementById('ringlight_model').value;
+            formData.has_tripod = document.getElementById('has_tripod').value;
+            formData.tripod_model = document.getElementById('tripod_model').value;
+            formData.has_car = document.getElementById('has_car').value;
+            formData.has_microphone = document.getElementById('has_microphone').value;
+
+            // Section 4
+            formData.instagram = document.getElementById('instagram').value;
+            formData.tiktok = document.getElementById('tiktok').value;
+            formData.twitter = document.getElementById('twitter').value;
+            formData.youtube = document.getElementById('youtube').value;
+            formData.other_platforms = document.getElementById('other_platforms').value;
+            formData.social_experience = document.getElementById('social_experience').value;
+            formData.geo_blocking = document.getElementById('geo_blocking').value;
+        }
+
+        function nextSection(current) {
+            if (!validateSection(current)) return;
+            
+            saveFormData();
+            
+            document.querySelector(`[data-section="${current}"]`).classList.add('hidden');
+            currentSection = current + 1;
+            document.querySelector(`[data-section="${currentSection}"]`).classList.remove('hidden');
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function previousSection(current) {
+            saveFormData();
+            
+            document.querySelector(`[data-section="${current}"]`).classList.add('hidden');
+            currentSection = current - 1;
+            document.querySelector(`[data-section="${currentSection}"]`).classList.remove('hidden');
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function showSummary() {
+            if (!validateSection(4)) return;
+            
+            saveFormData();
+
+            // Generate summary HTML
+            const summaryHTML = `
+                <div class="summary-card">
+                    <div class="summary-section">
+                        <div class="summary-title">👤 Personal Basics</div>
+                        <div class="summary-item"><span class="summary-label">Age:</span> ${formData.age}</div>
+                        <div class="summary-item"><span class="summary-label">Country:</span> ${formData.country}</div>
+                        <div class="summary-item"><span class="summary-label">Nationality:</span> ${formData.nationality}</div>
+                        <div class="summary-item"><span class="summary-label">Height/Build:</span> ${formData.height_build}</div>
+                        ${formData.tattoos_piercings ? `<div class="summary-item"><span class="summary-label">Tattoos/Piercings:</span> ${formData.tattoos_piercings}</div>` : ''}
+                        <div class="summary-item"><span class="summary-label">Relationship Status:</span> ${formData.relationship_status}</div>
+                        <div class="summary-item"><span class="summary-label">Living Situation:</span> ${formData.living_situation}</div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="summary-title">⏱️ Availability & Commitment</div>
+                        <div class="summary-item"><span class="summary-label">Hours/Week:</span> ${formData.hours_per_week}</div>
+                        <div class="summary-item"><span class="summary-label">Productive Times:</span> ${formData.productive_times}</div>
+                        <div class="summary-item"><span class="summary-label">Content Days:</span> ${formData.content_days}</div>
+                        <div class="summary-item"><span class="summary-label">Job:</span> ${formData.has_job}${formData.job_hours ? ' (' + formData.job_hours + 'h/week)' : ''}</div>
+                        <div class="summary-item"><span class="summary-label">Commitment:</span> ${formData.commitment_duration}</div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="summary-title">📱 Technical Equipment</div>
+                        <div class="summary-item"><span class="summary-label">Phone:</span> ${formData.phone_model}</div>
+                        <div class="summary-item"><span class="summary-label">Ring Light:</span> ${formData.has_ringlight}${formData.ringlight_model ? ' (' + formData.ringlight_model + ')' : ''}</div>
+                        <div class="summary-item"><span class="summary-label">Tripod:</span> ${formData.has_tripod}${formData.tripod_model ? ' (' + formData.tripod_model + ')' : ''}</div>
+                        <div class="summary-item"><span class="summary-label">Car:</span> ${formData.has_car}</div>
+                        <div class="summary-item"><span class="summary-label">Microphone:</span> ${formData.has_microphone}</div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="summary-title">📲 Social Media</div>
+                        ${formData.instagram ? `<div class="summary-item"><span class="summary-label">Instagram:</span> ${formData.instagram}</div>` : ''}
+                        ${formData.tiktok ? `<div class="summary-item"><span class="summary-label">TikTok:</span> ${formData.tiktok}</div>` : ''}
+                        ${formData.twitter ? `<div class="summary-item"><span class="summary-label">Twitter:</span> ${formData.twitter}</div>` : ''}
+                        ${formData.youtube ? `<div class="summary-item"><span class="summary-label">YouTube:</span> ${formData.youtube}</div>` : ''}
+                        ${formData.other_platforms ? `<div class="summary-item"><span class="summary-label">Other:</span> ${formData.other_platforms}</div>` : ''}
+                        <div class="summary-item"><span class="summary-label">Experience:</span> ${formData.social_experience}</div>
+                        ${formData.geo_blocking ? `<div class="summary-item"><span class="summary-label">Geo-Blocking:</span> ${formData.geo_blocking}</div>` : ''}
+                    </div>
+                </div>
+            `;
+
+            // Check qualification
+            const qualificationHTML = checkQualification(formData);
+
+            document.getElementById('summaryContent').innerHTML = summaryHTML;
+            document.getElementById('qualificationCheck').innerHTML = qualificationHTML;
+
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show summary
+            document.getElementById('summarySection').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function checkQualification(data) {
+            let qualifiedCount = 0;
+            const checks = [];
+
+            // Check hours per week (min 15)
+            if (parseInt(data.hours_per_week) >= 15) {
+                qualifiedCount++;
+                checks.push('✅ Min. 15-20 hrs/week available');
+            } else {
+                checks.push('⚠️ Less than 15 hrs/week');
+            }
+
+            // Check phone
+            if (data.phone_model && data.phone_model.trim() !== '') {
+                qualifiedCount++;
+                checks.push('✅ Smartphone available');
+            } else {
+                checks.push('⚠️ No smartphone specified');
+            }
+
+            // Check equipment or willingness
+            if (data.has_ringlight !== 'no' || data.has_tripod !== 'no') {
+                qualifiedCount++;
+                checks.push('✅ Equipment available');
+            } else {
+                checks.push('⚠️ No equipment available');
+            }
+
+            // Check social media
+            if (data.instagram || data.tiktok || data.twitter || data.youtube) {
+                qualifiedCount++;
+                checks.push('✅ Social media account available');
+            } else {
+                checks.push('⚠️ No social media accounts');
+            }
+
+            // Check commitment
+            if (data.commitment_duration && !data.commitment_duration.includes('3-6months')) {
+                qualifiedCount++;
+                checks.push('✅ Long-term commitment');
+            } else {
+                checks.push('⚠️ Short commitment');
+            }
+
+            const isQualified = qualifiedCount >= 4;
+            const badgeClass = isQualified ? 'qualified' : 'needs-review';
+            const badgeText = isQualified ? '✅ QUALIFIED' : '⚠️ REVIEW REQUIRED';
+
+            return `
+                <div class="summary-card" style="margin-top: 20px;">
+                    <div class="summary-title">🎯 Qualification Check</div>
+                    <div class="qualification-badge ${badgeClass}">${badgeText} (${qualifiedCount}/5)</div>
+                    <div style="margin-top: 15px;">
+                        ${checks.map(check => `<div style="margin: 5px 0; color: #4a5568;">${check}</div>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function editForm() {
+            document.getElementById('summarySection').classList.add('hidden');
+            document.querySelector('[data-section="1"]').classList.remove('hidden');
+            currentSection = 1;
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        async function submitForm() {
+            try {
+                // Add timestamp
+                formData.timestamp = new Date().toISOString();
+                formData.language = 'en';
+
+                // Send to Google Sheets
+                await sendToGoogleSheets(formData);
+
+                // Show success screen
+                document.getElementById('summarySection').classList.add('hidden');
+                document.getElementById('successScreen').classList.remove('hidden');
+                window.scrollTo(0, 0);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('⚠️ There was an error submitting. Please try again or contact us directly via WhatsApp.');
+            }
+        }
+
+        async function sendToGoogleSheets(data) {
+            // INSERT YOUR GOOGLE SHEETS WEB APP URL HERE
+            const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_SHEETS_WEB_APP_URL_HERE';
+
+            // Uncomment when ready:
+            /*
+            const response = await fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+            */
+
+            // For now, just log
+            console.log('Data to send:', data);
+            return Promise.resolve();
+        }
+
+        function copyToClipboard() {
+            let text = '=== CREATOR ONBOARDING - SUMMARY ===\n\n';
+            text += '👤 PERSONAL BASICS\n';
+            text += `Age: ${formData.age}\n`;
+            text += `Country: ${formData.country}\n`;
+            text += `Nationality: ${formData.nationality}\n`;
+            text += `Height/Build: ${formData.height_build}\n`;
+            if (formData.tattoos_piercings) text += `Tattoos/Piercings: ${formData.tattoos_piercings}\n`;
+            text += `Relationship Status: ${formData.relationship_status}\n`;
+            text += `Living Situation: ${formData.living_situation}\n\n`;
+
+            text += '⏱️ AVAILABILITY & COMMITMENT\n';
+            text += `Hours/Week: ${formData.hours_per_week}\n`;
+            text += `Productive Times: ${formData.productive_times}\n`;
+            text += `Content Days: ${formData.content_days}\n`;
+            text += `Job: ${formData.has_job}${formData.job_hours ? ' (' + formData.job_hours + 'h/week)' : ''}\n`;
+            text += `Commitment: ${formData.commitment_duration}\n\n`;
+
+            text += '📱 TECHNICAL EQUIPMENT\n';
+            text += `Phone: ${formData.phone_model}\n`;
+            text += `Ring Light: ${formData.has_ringlight}${formData.ringlight_model ? ' (' + formData.ringlight_model + ')' : ''}\n`;
+            text += `Tripod: ${formData.has_tripod}${formData.tripod_model ? ' (' + formData.tripod_model + ')' : ''}\n`;
+            text += `Car: ${formData.has_car}\n`;
+            text += `Microphone: ${formData.has_microphone}\n\n`;
+
+            text += '📲 SOCIAL MEDIA\n';
+            if (formData.instagram) text += `Instagram: ${formData.instagram}\n`;
+            if (formData.tiktok) text += `TikTok: ${formData.tiktok}\n`;
+            if (formData.twitter) text += `Twitter: ${formData.twitter}\n`;
+            if (formData.youtube) text += `YouTube: ${formData.youtube}\n`;
+            if (formData.other_platforms) text += `Other: ${formData.other_platforms}\n`;
+            text += `Experience: ${formData.social_experience}\n`;
+            if (formData.geo_blocking) text += `Geo-Blocking: ${formData.geo_blocking}\n`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Summary copied to clipboard!');
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                alert('⚠️ Copy failed. Please copy manually.');
+            });
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -7,10 +7,10 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             background-image:
-                linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%),
+                linear-gradient(135deg, rgba(102,126,234,0.7) 0%, rgba(118,75,162,0.7) 100%),
                 url('https://i.imgur.com/Q3gfUqC.jpeg');
             background-size: cover, 50%;
             background-position: center, center;
@@ -20,7 +20,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
             background: white;
             background-image: url('https://i.imgur.com/Q3gfUqC.jpeg');
@@ -34,132 +34,86 @@
         }
         .container::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.88);
-            pointer-events: none;
-            z-index: 0;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.92);
+            pointer-events: none; z-index: 0;
         }
         .container > * { position: relative; z-index: 1; }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        .header h1 { font-size: 2em; margin-bottom: 10px; font-weight: 700; }
-        .header p { opacity: 0.9; font-size: 1.1em; }
-        .content { padding: 40px; }
-        .welcome-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-left: 4px solid #667eea;
-        }
-        .welcome-card h2 { color: #667eea; margin-bottom: 15px; font-size: 1.5em; }
-        .welcome-card p { color: #4a5568; line-height: 1.6; margin-bottom: 10px; }
-        .progress-container { margin-bottom: 30px; }
-        .progress-bar {
-            width: 100%; height: 8px;
-            background: #e2e8f0; border-radius: 10px;
-            overflow: hidden; margin-bottom: 10px;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%; transition: width 0.5s ease;
-        }
-        .progress-text { text-align: center; color: #667eea; font-weight: 600; font-size: 0.9em; }
-        .section { margin-bottom: 40px; }
-        .section-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 15px 20px;
-            border-radius: 8px; margin-bottom: 25px;
-            font-size: 1.3em; font-weight: 600;
-        }
-        .question { margin-bottom: 30px; }
-        .question-label {
-            display: block; font-weight: 600;
-            margin-bottom: 8px; color: #2d3748; font-size: 1em;
-        }
-        .question-label .required { color: #e53e3e; }
-        .question-hint {
-            display: block; font-size: 0.85em;
-            color: #718096; margin-bottom: 10px; font-style: italic;
-        }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 36px 40px; text-align: center; }
+        .header h1 { font-size: 1.9em; margin-bottom: 8px; font-weight: 700; }
+        .header p { opacity: 0.9; font-size: 1.05em; }
+        .content { padding: 36px 40px; }
+        .progress-wrap { margin-bottom: 28px; }
+        .progress-bar { width: 100%; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); width: 20%; transition: width 0.4s ease; border-radius: 10px; }
+        .progress-text { text-align: center; color: #667eea; font-weight: 600; font-size: 12px; }
+        .section-card { background: #fff; border: 1px solid rgba(102,126,234,0.12); border-radius: 14px; padding: 24px; box-shadow: 0 2px 8px rgba(102,126,234,0.05); margin-bottom: 20px; }
+        .section-header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 8px; padding: 12px 16px; margin-bottom: 24px; font-size: 15px; font-weight: 600; }
+        .field { margin-bottom: 22px; }
+        .field label { display: block; font-weight: 600; color: #2d3748; font-size: 14px; margin-bottom: 8px; }
+        .field label .req { color: #e53e3e; }
+        .hint { background: rgba(102,126,234,0.07); border: 1px solid rgba(102,126,234,0.15); border-radius: 7px; padding: 7px 12px; margin-bottom: 8px; font-size: 12px; color: #667eea; }
         input[type="text"], input[type="number"], textarea, select {
-            width: 100%; padding: 12px 16px;
-            border: 2px solid #e2e8f0; border-radius: 8px;
-            font-size: 1em; transition: all 0.2s ease;
-            background: white; color: #2d3748;
+            width: 100%; padding: 11px 14px; border: 2px solid #e2e8f0; border-radius: 8px;
+            font-size: 14px; color: #2d3748; background: #fff; outline: none;
+            font-family: inherit; transition: border-color 0.2s; box-sizing: border-box;
         }
-        input:focus, textarea:focus, select:focus {
-            outline: none; border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
-        }
-        textarea { min-height: 100px; resize: vertical; font-family: inherit; }
+        input:focus, textarea:focus, select:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
+        textarea { min-height: 90px; resize: vertical; }
         select {
             cursor: pointer; appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px; padding-right: 40px;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat; background-position: right 12px center; background-size: 18px; padding-right: 38px;
         }
-        .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
-        .checkbox-item {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 14px; border: 2px solid #e2e8f0;
-            border-radius: 8px; cursor: pointer; transition: all 0.2s;
+        .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+        .pill {
+            display: flex; align-items: center; gap: 7px; padding: 8px 14px;
+            border-radius: 8px; border: 2px solid #e2e8f0; background: #fff;
+            cursor: pointer; font-size: 13px; color: #4a5568; font-weight: 400;
+            user-select: none; transition: all 0.15s; font-family: inherit;
         }
-        .checkbox-item:hover { border-color: #667eea; background: #f7f8ff; }
-        .checkbox-item input[type="checkbox"] {
-            width: 18px; height: 18px; cursor: pointer;
-            accent-color: #667eea; flex-shrink: 0;
+        .pill.checked { border-color: #667eea; background: rgba(102,126,234,0.08); color: #667eea; font-weight: 600; }
+        .pill-box {
+            width: 16px; height: 16px; border-radius: 4px; border: 2px solid #cbd5e0;
+            background: #fff; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.15s;
         }
-        .checkbox-item label { cursor: pointer; color: #2d3748; font-size: 0.95em; }
-        .button-group { display: flex; gap: 15px; margin-top: 30px; }
-        button {
-            flex: 1; padding: 14px 28px;
-            font-size: 1.05em; font-weight: 600;
-            border: none; border-radius: 8px;
-            cursor: pointer; transition: all 0.2s ease;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,0.4); }
-        .btn-secondary { background: white; color: #667eea; border: 2px solid #667eea; }
-        .btn-secondary:hover { background: #f7fafc; }
+        .pill.checked .pill-box { border-color: #667eea; background: #667eea; }
         .hidden { display: none !important; }
-        .summary-card {
-            background: white; border-radius: 12px;
-            padding: 25px; margin-bottom: 20px;
-            border: 2px solid #e2e8f0;
+        .btn-row { display: flex; gap: 10px; margin-top: 4px; }
+        .btn-primary {
+            flex: 1; padding: 13px 20px; background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
         }
-        .summary-title {
-            font-size: 1.2em; font-weight: 700;
-            color: #667eea; margin-bottom: 15px;
-            padding-bottom: 10px; border-bottom: 2px solid #e2e8f0;
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(102,126,234,0.4); }
+        .btn-secondary {
+            padding: 13px 20px; background: rgba(0,0,0,0.04); color: #718096;
+            border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; font-size: 14px;
+            cursor: pointer; font-family: inherit; transition: all 0.2s;
         }
-        .summary-item { padding: 8px 0; color: #4a5568; line-height: 1.6; }
-        .summary-label { font-weight: 600; color: #2d3748; display: inline-block; min-width: 160px; }
-        .qualification-badge {
-            display: inline-block; padding: 10px 20px;
-            border-radius: 8px; font-weight: 700;
-            font-size: 1.1em; margin: 10px 0;
+        .btn-outline {
+            padding: 13px 20px; background: white; color: #667eea;
+            border: 1px solid rgba(102,126,234,0.3); border-radius: 8px;
+            font-size: 14px; cursor: pointer; font-family: inherit;
         }
-        .qualified { background: #c6f6d5; color: #22543d; }
-        .needs-review { background: #fed7d7; color: #742a2a; }
-        .success-screen { text-align: center; padding: 40px; }
-        .success-icon { font-size: 5em; margin-bottom: 20px; }
-        .success-screen h2 { color: #667eea; margin-bottom: 15px; font-size: 2em; }
-        .success-screen p { color: #4a5568; line-height: 1.8; margin-bottom: 15px; font-size: 1.1em; }
+        .summary-block { background: #fff; border: 1px solid rgba(102,126,234,0.12); border-radius: 14px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(102,126,234,0.05); }
+        .summary-block h3 { color: #667eea; font-size: 16px; margin-bottom: 14px; font-weight: 700; }
+        .summary-row { display: flex; gap: 12px; padding: 7px 0; border-bottom: 1px solid rgba(102,126,234,0.06); font-size: 14px; }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-label { color: #9b8fc4; font-weight: 600; min-width: 180px; flex-shrink: 0; font-size: 13px; }
+        .summary-val { color: #2d3748; }
+        .success { text-align: center; padding: 40px 24px; }
+        .success .icon { font-size: 52px; margin-bottom: 16px; }
+        .success h2 { color: #667eea; font-size: 1.8em; margin-bottom: 12px; }
+        .success p { color: #4a5568; font-size: 15px; line-height: 1.8; margin-bottom: 16px; }
+        .next-steps { background: rgba(102,126,234,0.07); border: 1px solid rgba(102,126,234,0.15); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; text-align: left; }
+        .next-steps strong { color: #667eea; display: block; margin-bottom: 8px; font-size: 14px; }
+        .next-steps p { color: #4a5568; font-size: 13px; margin: 0; line-height: 1.7; }
         @media (max-width: 600px) {
-            .button-group { flex-direction: column; }
-            .header h1 { font-size: 1.5em; }
-            .content { padding: 20px; }
+            .content { padding: 24px 20px; } .header { padding: 28px 20px; }
+            .header h1 { font-size: 1.5em; } .btn-row { flex-direction: column; }
+            .summary-label { min-width: 120px; }
         }
     </style>
 </head>
@@ -167,515 +121,295 @@
 <div class="container">
     <div class="header">
         <h1>Perlage Creator Onboarding</h1>
-        <p>Your Path to Success - Let's Get Started!</p>
+        <p>Please answer all questions carefully — this helps us create the best strategy for you!</p>
     </div>
     <div class="content">
 
-        <div class="welcome-card">
-            <h2>👋 Welcome!</h2>
-            <p>We're excited to get to know you better. This questionnaire helps us understand your situation, goals, and technical setup so we can provide you with the best possible support.</p>
-            <p><strong>Please answer all questions honestly.</strong></p>
-            <p>⏱️ Time needed: approx. 5-7 minutes</p>
-        </div>
-
-        <div class="progress-container">
-            <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+        <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
             <div class="progress-text" id="progressText">Section 1 of 5</div>
         </div>
 
-        <!-- Section 1: Personal Info -->
-        <div class="section" data-section="1">
-            <div class="section-header">👤 Section 1 — Personal Info</div>
+        <!-- Section 1 -->
+        <div id="sec1">
+            <div class="section-card">
+                <div class="section-header">👤 Personal Information</div>
+                <div class="field"><label>Name / Stage name <span class="req">*</span></label><input type="text" id="name" placeholder="E.g. Sofia Rose"></div>
+                <div class="field"><label>Age <span class="req">*</span></label><input type="number" id="age" min="18" max="99"></div>
+                <div class="field"><label>Height <span class="req">*</span></label><input type="text" id="height" placeholder="E.g. 165 cm"></div>
+                <div class="field"><label>Nationality <span class="req">*</span></label><input type="text" id="nationality" placeholder="E.g. German"></div>
+                <div class="field"><label>Country / City <span class="req">*</span></label><input type="text" id="location" placeholder="E.g. Germany, Berlin"></div>
+                <div class="field"><label>Current job / occupation</label><input type="text" id="job" placeholder="E.g. Student, Waitress"></div>
+                <div class="field"><label>Hobbies or passions</label><textarea id="hobbies" placeholder="E.g. fitness, cooking, travel..."></textarea></div>
+                <div class="field"><label>Special talents or skills</label><textarea id="talents" placeholder="Anything counts — dancing, languages, art..."></textarea></div>
+            </div>
+            <div class="btn-row"><button class="btn-primary" onclick="goTo(1,2)">Next →</button></div>
+        </div>
 
-            <div class="question">
-                <label class="question-label">Name / Stage Name <span class="required">*</span></label>
-                <input type="text" id="name" placeholder="E.g., Jessica Rose" required>
+        <!-- Section 2 -->
+        <div id="sec2" class="hidden">
+            <div class="section-card">
+                <div class="section-header">🎯 Goals & Availability</div>
+                <div class="field"><label>Long-term goal for OnlyFans <span class="req">*</span></label><textarea id="longterm_goal" placeholder="E.g. financial freedom, full-time creator..."></textarea></div>
+                <div class="field"><label>Monthly income goal (realistic &amp; dream goal) <span class="req">*</span></label><input type="text" id="income_goal" placeholder="E.g. $2,000 realistic / $10,000 dream"></div>
+                <div class="field">
+                    <label>Hours per day you can dedicate to OnlyFans <span class="req">*</span></label>
+                    <select id="hours_per_day">
+                        <option value="">-- Please select --</option>
+                        <option>1–2 hours</option><option>3–4 hours</option><option>5–6 hours</option><option>7–8 hours</option><option>8+ hours</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Daily schedule — when are you most available? <span class="req">*</span></label>
+                    <select id="availability">
+                        <option value="">-- Please select --</option>
+                        <option>Morning (6–12)</option><option>Afternoon (12–18)</option><option>Evening (18–24)</option><option>Night (0–6)</option><option>Flexible</option>
+                    </select>
+                </div>
+                <div class="field"><label>Absolute No-Gos on OnlyFans and Social Media <span class="req">*</span></label><textarea id="no_gos" placeholder="E.g. no face, no specific acts..."></textarea></div>
             </div>
-            <div class="question">
-                <label class="question-label">Age <span class="required">*</span></label>
-                <input type="number" id="age" min="18" max="99" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Height & Build <span class="required">*</span></label>
-                <span class="question-hint">E.g., "170 cm, slim" or "5'6", curvy"</span>
-                <input type="text" id="height" placeholder="E.g., 170 cm, slim" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Nationality <span class="required">*</span></label>
-                <input type="text" id="nationality" placeholder="E.g., American" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Country / City <span class="required">*</span></label>
-                <input type="text" id="location" placeholder="E.g., Los Angeles, USA" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Job / Occupation</label>
-                <span class="question-hint">Current job or student status</span>
-                <input type="text" id="job" placeholder="E.g., Nurse, Student, Freelancer">
-            </div>
-            <div class="question">
-                <label class="question-label">Hobbies</label>
-                <input type="text" id="hobbies" placeholder="E.g., Fitness, Travel, Cooking">
-            </div>
-            <div class="question">
-                <label class="question-label">Special Talents</label>
-                <input type="text" id="talents" placeholder="E.g., Dancing, Singing, Art">
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-primary" onclick="nextSection(1)">Next →</button>
+            <div class="btn-row">
+                <button class="btn-secondary" onclick="goTo(2,1)">← Back</button>
+                <button class="btn-primary" onclick="goTo(2,3)">Next →</button>
             </div>
         </div>
 
-        <!-- Section 2: Goals & Availability -->
-        <div class="section hidden" data-section="2">
-            <div class="section-header">🎯 Section 2 — Goals & Availability</div>
-
-            <div class="question">
-                <label class="question-label">Long-term Goal <span class="required">*</span></label>
-                <span class="question-hint">What do you want to achieve in the next 1-2 years?</span>
-                <textarea id="longterm_goal" placeholder="E.g., Financial independence, build a brand, quit my 9-5..." required></textarea>
-            </div>
-            <div class="question">
-                <label class="question-label">Monthly Income Goal <span class="required">*</span></label>
-                <span class="question-hint">How much do you want to earn per month?</span>
-                <input type="text" id="income_goal" placeholder="E.g., $3,000 / month" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Hours Available Per Day <span class="required">*</span></label>
-                <span class="question-hint">Realistic daily hours you can dedicate (min. 2-3 hours)</span>
-                <input type="number" id="hours_per_day" min="1" max="24" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Availability / Schedule <span class="required">*</span></label>
-                <span class="question-hint">Which days and times are you available?</span>
-                <textarea id="availability" placeholder="E.g., Mon-Fri evenings, Weekends all day..." required></textarea>
-            </div>
-            <div class="question">
-                <label class="question-label">No-Gos / Hard Limits <span class="required">*</span></label>
-                <span class="question-hint">Things you will NOT do (content-wise)</span>
-                <textarea id="no_gos" placeholder="E.g., No face reveal, no explicit content, no couples content..." required></textarea>
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="previousSection(2)">← Back</button>
-                <button type="button" class="btn-primary" onclick="nextSection(2)">Next →</button>
-            </div>
-        </div>
-
-        <!-- Section 3: Equipment -->
-        <div class="section hidden" data-section="3">
-            <div class="section-header">📱 Section 3 — Equipment & Setup</div>
-
-            <div class="question">
-                <label class="question-label">Phone Model <span class="required">*</span></label>
-                <span class="question-hint">E.g., iPhone 14 Pro, Samsung Galaxy S23</span>
-                <input type="text" id="phone_model" placeholder="E.g., iPhone 13" required>
-            </div>
-            <div class="question">
-                <label class="question-label">Equipment You Have</label>
-                <span class="question-hint">Check all that apply</span>
-                <div class="checkbox-group" id="equipment_list">
-                    <div class="checkbox-item"><input type="checkbox" id="eq_ringlight" value="Ring Light"><label for="eq_ringlight">Ring Light</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="eq_tripod" value="Tripod"><label for="eq_tripod">Tripod</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="eq_softbox" value="Softbox"><label for="eq_softbox">Softbox / Studio Light</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="eq_microphone" value="Microphone"><label for="eq_microphone">Microphone</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="eq_camera" value="Camera"><label for="eq_camera">Camera (DSLR/Mirrorless)</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="eq_car" value="Car"><label for="eq_car">Car (for content settings)</label></div>
+        <!-- Section 3 -->
+        <div id="sec3" class="hidden">
+            <div class="section-card">
+                <div class="section-header">📱 Equipment & Setup</div>
+                <div class="field"><label>Phone model &amp; camera quality <span class="req">*</span></label><input type="text" id="phone_model" placeholder="E.g. iPhone 14 Pro"></div>
+                <div class="field">
+                    <label>Additional equipment you have</label>
+                    <div class="pills" id="equipment_list">
+                        <div class="pill" data-val="Ring light" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>Ring light</div>
+                        <div class="pill" data-val="Tripod" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>Tripod</div>
+                        <div class="pill" data-val="Camera" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>Camera</div>
+                        <div class="pill" data-val="Microphone" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>Microphone</div>
+                        <div class="pill" data-val="Softbox" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>Softbox</div>
+                        <div class="pill" data-val="None" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>None</div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Equipment photos (Google Drive link)</label>
+                    <div class="hint">📲 Share photos of each item via Google Drive or WhatsApp</div>
+                    <input type="text" id="equipment_gdrive" placeholder="Paste Google Drive link">
+                </div>
+                <div class="field">
+                    <label>Do you have a quiet, well-lit space for content? <span class="req">*</span></label>
+                    <select id="quiet_space">
+                        <option value="">-- Please select --</option>
+                        <option>Yes</option><option>Somewhat</option><option>No</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Room tour / shooting location (Google Drive link)</label>
+                    <div class="hint">📲 Share a room tour video or photos via Google Drive or WhatsApp</div>
+                    <input type="text" id="room_tour_gdrive" placeholder="Paste Google Drive link">
+                </div>
+                <div class="field">
+                    <label>Do you have different outfits ready? <span class="req">*</span></label>
+                    <select id="outfits">
+                        <option value="">-- Please select --</option>
+                        <option>Yes, many</option><option>Yes, a few</option><option>Not yet</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Outfit photos (Google Drive link)</label>
+                    <div class="hint">📲 Share outfit photos/videos via Google Drive or WhatsApp</div>
+                    <input type="text" id="outfits_gdrive" placeholder="Paste Google Drive link">
                 </div>
             </div>
-            <div class="question">
-                <label class="question-label">Equipment Photos (Google Drive Link)</label>
-                <span class="question-hint">Optional: Share photos of your setup</span>
-                <input type="text" id="equipment_gdrive" placeholder="https://drive.google.com/...">
-            </div>
-            <div class="question">
-                <label class="question-label">Do you have a quiet private space to record? <span class="required">*</span></label>
-                <select id="quiet_space" required>
-                    <option value="">-- Please select --</option>
-                    <option value="Yes, private room">Yes, private room</option>
-                    <option value="Yes, but shared">Yes, but sometimes shared</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-            <div class="question">
-                <label class="question-label">Room Tour (Google Drive Link)</label>
-                <span class="question-hint">Optional: Short video/photos of your recording space</span>
-                <input type="text" id="room_tour_gdrive" placeholder="https://drive.google.com/...">
-            </div>
-            <div class="question">
-                <label class="question-label">Do you have outfits ready? <span class="required">*</span></label>
-                <select id="outfits" required>
-                    <option value="">-- Please select --</option>
-                    <option value="Yes, many">Yes, many outfits ready</option>
-                    <option value="Yes, a few">Yes, a few</option>
-                    <option value="No, need to buy">No, need to buy some</option>
-                </select>
-            </div>
-            <div class="question">
-                <label class="question-label">Outfit Photos (Google Drive Link)</label>
-                <span class="question-hint">Optional: Share photos of your outfits</span>
-                <input type="text" id="outfits_gdrive" placeholder="https://drive.google.com/...">
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="previousSection(3)">← Back</button>
-                <button type="button" class="btn-primary" onclick="nextSection(3)">Next →</button>
+            <div class="btn-row">
+                <button class="btn-secondary" onclick="goTo(3,2)">← Back</button>
+                <button class="btn-primary" onclick="goTo(3,4)">Next →</button>
             </div>
         </div>
 
-        <!-- Section 4: Social Media -->
-        <div class="section hidden" data-section="4">
-            <div class="section-header">📲 Section 4 — Social Media</div>
-
-            <div class="question">
-                <label class="question-label">Which platforms do you use?</label>
-                <span class="question-hint">Check all that apply</span>
-                <div class="checkbox-group" id="platforms_list">
-                    <div class="checkbox-item"><input type="checkbox" id="pl_instagram" value="Instagram"><label for="pl_instagram">Instagram</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pl_tiktok" value="TikTok"><label for="pl_tiktok">TikTok</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pl_twitter" value="Twitter/X"><label for="pl_twitter">Twitter / X</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pl_facebook" value="Facebook"><label for="pl_facebook">Facebook</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pl_youtube" value="YouTube"><label for="pl_youtube">YouTube</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pl_snapchat" value="Snapchat"><label for="pl_snapchat">Snapchat</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="pl_reddit" value="Reddit"><label for="pl_reddit">Reddit</label></div>
+        <!-- Section 4 -->
+        <div id="sec4" class="hidden">
+            <div class="section-card">
+                <div class="section-header">📲 Social Media & Content</div>
+                <div class="field">
+                    <label>Active platforms we can use for OnlyFans</label>
+                    <div class="pills" id="platforms">
+                        <div class="pill" data-val="Instagram" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>Instagram</div>
+                        <div class="pill" data-val="TikTok" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>TikTok</div>
+                        <div class="pill" data-val="Twitter/X" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>Twitter/X</div>
+                        <div class="pill" data-val="Reddit" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>Reddit</div>
+                        <div class="pill" data-val="YouTube" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>YouTube</div>
+                        <div class="pill" data-val="Snapchat" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>Snapchat</div>
+                        <div class="pill" data-val="Other" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>Other</div>
+                    </div>
+                </div>
+                <div class="field"><label>Links to all relevant social media accounts</label><textarea id="social_links" placeholder="E.g. instagram.com/username, tiktok.com/@username"></textarea></div>
+                <div class="field">
+                    <label>Do you already have an OnlyFans account? <span class="req">*</span></label>
+                    <select id="has_onlyfans" onchange="toggleConditional('has_onlyfans',['Yes'],'onlyfans_link_field')">
+                        <option value="">-- Please select --</option>
+                        <option>Yes</option><option>No</option>
+                    </select>
+                </div>
+                <div class="field hidden" id="onlyfans_link_field">
+                    <label>OnlyFans account link</label>
+                    <input type="text" id="onlyfans_link" placeholder="onlyfans.com/yourname">
+                </div>
+                <div class="field">
+                    <label>Do you have existing content we can use? <span class="req">*</span></label>
+                    <select id="existing_content">
+                        <option value="">-- Please select --</option>
+                        <option>Yes, photos &amp; videos</option><option>Yes, photos only</option><option>Yes, videos only</option><option>No</option>
+                    </select>
                 </div>
             </div>
-            <div class="question">
-                <label class="question-label">Social Media Links / Usernames</label>
-                <span class="question-hint">List your handles or profile links</span>
-                <textarea id="social_links" placeholder="E.g., Instagram: @username, TikTok: @username..."></textarea>
-            </div>
-            <div class="question">
-                <label class="question-label">Do you already have an OnlyFans? <span class="required">*</span></label>
-                <select id="has_onlyfans" required onchange="toggleOnlyFansLink()">
-                    <option value="">-- Please select --</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-            <div class="question hidden" id="onlyfans_link_container">
-                <label class="question-label">OnlyFans Link / Username</label>
-                <input type="text" id="onlyfans_link" placeholder="https://onlyfans.com/...">
-            </div>
-            <div class="question">
-                <label class="question-label">Do you have existing content? <span class="required">*</span></label>
-                <select id="existing_content" required>
-                    <option value="">-- Please select --</option>
-                    <option value="Yes, lots">Yes, lots of existing content</option>
-                    <option value="Yes, a little">Yes, some content</option>
-                    <option value="No">No, starting fresh</option>
-                </select>
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="previousSection(4)">← Back</button>
-                <button type="button" class="btn-primary" onclick="nextSection(4)">Next →</button>
+            <div class="btn-row">
+                <button class="btn-secondary" onclick="goTo(4,3)">← Back</button>
+                <button class="btn-primary" onclick="goTo(4,5)">Next →</button>
             </div>
         </div>
 
-        <!-- Section 5: Extra Info -->
-        <div class="section hidden" data-section="5">
-            <div class="section-header">ℹ️ Section 5 — Additional Info</div>
-
-            <div class="question">
-                <label class="question-label">Have you worked with an agency before? <span class="required">*</span></label>
-                <select id="agency_before" required onchange="toggleAgencyExperience()">
-                    <option value="">-- Please select --</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
+        <!-- Section 5 -->
+        <div id="sec5" class="hidden">
+            <div class="section-card">
+                <div class="section-header">ℹ️ Additional Info</div>
+                <div class="field">
+                    <label>Have you worked with an agency before? <span class="req">*</span></label>
+                    <select id="agency_before" onchange="toggleConditional('agency_before',['Yes'],'agency_exp_field')">
+                        <option value="">-- Please select --</option>
+                        <option>Yes</option><option>No</option>
+                    </select>
+                </div>
+                <div class="field hidden" id="agency_exp_field">
+                    <label>What was your experience with the agency?</label>
+                    <textarea id="agency_experience" placeholder="Tell us about your experience..."></textarea>
+                </div>
+                <div class="field"><label>Anything else important we should know about you?</label><textarea id="anything_else" placeholder="Feel free to share anything relevant..."></textarea></div>
             </div>
-            <div class="question hidden" id="agency_experience_container">
-                <label class="question-label">Describe your agency experience</label>
-                <span class="question-hint">What worked? What didn't? Why did you leave?</span>
-                <textarea id="agency_experience" placeholder="Tell us about your previous agency..."></textarea>
-            </div>
-            <div class="question">
-                <label class="question-label">Anything else you'd like us to know?</label>
-                <span class="question-hint">Questions, special circumstances, additional context...</span>
-                <textarea id="anything_else" placeholder="Feel free to share anything..."></textarea>
-            </div>
-
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="previousSection(5)">← Back</button>
-                <button type="button" class="btn-primary" onclick="showSummary()">Review Summary →</button>
+            <div class="btn-row">
+                <button class="btn-secondary" onclick="goTo(5,4)">← Back</button>
+                <button class="btn-primary" onclick="showSummary()">Review Summary →</button>
             </div>
         </div>
 
-        <!-- Summary Section -->
-        <div class="section hidden" id="summarySection">
-            <div class="section-header">📋 Summary of Your Information</div>
+        <!-- Summary -->
+        <div id="secSummary" class="hidden">
+            <h2 style="color:#2d3748;font-size:22px;margin-bottom:20px;">📋 Summary</h2>
             <div id="summaryContent"></div>
-            <div id="qualificationCheck"></div>
-            <div class="button-group">
-                <button type="button" class="btn-secondary" onclick="editForm()">✏️ Edit</button>
-                <button type="button" class="btn-secondary" onclick="copyToClipboard()">📋 Copy</button>
-                <button type="button" class="btn-primary" onclick="submitForm()">✅ Submit</button>
+            <div class="btn-row" style="flex-wrap:wrap;">
+                <button class="btn-secondary" onclick="editForm()">✏️ Edit</button>
+                <button class="btn-outline" onclick="copyClipboard()">📋 Copy</button>
+                <button class="btn-primary" onclick="submitForm()">✅ Submit</button>
             </div>
         </div>
 
-        <!-- Success Screen -->
-        <div class="section hidden" id="successScreen">
-            <div class="success-screen">
-                <div class="success-icon">🎉</div>
+        <!-- Success -->
+        <div id="secSuccess" class="hidden">
+            <div class="success">
+                <div class="icon">🎉</div>
                 <h2>Successfully Submitted!</h2>
-                <p>Thank you for taking the time to fill out the questionnaire!</p>
-                <p>We'll review your information and get back to you soon.</p>
-                <p><strong>What's next?</strong></p>
-                <p>We'll reach out to you via WhatsApp within 24-48 hours to discuss the next steps.</p>
-                <div style="margin-top: 30px;">
-                    <button class="btn-primary" onclick="location.reload()">Submit Another Response</button>
+                <p>Thank you! We'll review your info and get back to you via WhatsApp within 24–48 hours.</p>
+                <div class="next-steps">
+                    <strong>📲 Next Steps:</strong>
+                    <p>Please also send us via WhatsApp: equipment photos, room tour video/photos, and outfit photos/videos.</p>
+                </div>
+                <div class="btn-row" style="justify-content:center;flex-wrap:wrap;">
+                    <button class="btn-outline" onclick="copyClipboard()">📋 Copy Summary</button>
+                    <button class="btn-secondary" onclick="location.reload()">Submit another response</button>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-
 <script>
-    let currentSection = 1;
-    const totalSections = 5;
-    let formData = {};
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbqaIcu-l06cpd5D3yJlsvD-TsFA5XqlMiib2PKk-qvsHYWIhCwSrDKxeExmNNU0Zenw/exec';
+    const REQUIRED = { 1:['name','age','height','nationality','location'], 2:['longterm_goal','income_goal','hours_per_day','availability','no_gos'], 3:['phone_model','quiet_space','outfits'], 4:['has_onlyfans','existing_content'], 5:['agency_before'] };
+    const SECTIONS_META = [
+        { title:'👤 Personal Information', fields:['name','age','height','nationality','location','job','hobbies','talents'] },
+        { title:'🎯 Goals & Availability', fields:['longterm_goal','income_goal','hours_per_day','availability','no_gos'] },
+        { title:'📱 Equipment & Setup', fields:['phone_model','equipment_list','equipment_gdrive','quiet_space','room_tour_gdrive','outfits','outfits_gdrive'] },
+        { title:'📲 Social Media & Content', fields:['platforms','social_links','has_onlyfans','onlyfans_link','existing_content'] },
+        { title:'ℹ️ Additional Info', fields:['agency_before','agency_experience','anything_else'] },
+    ];
+    const LABELS = { name:'Name / Stage name', age:'Age', height:'Height', nationality:'Nationality', location:'Country / City', job:'Job / occupation', hobbies:'Hobbies', talents:'Talents', longterm_goal:'Long-term goal', income_goal:'Income goal', hours_per_day:'Hours/day', availability:'Availability', no_gos:'No-Gos', phone_model:'Phone model', equipment_list:'Equipment', equipment_gdrive:'Equipment photos', quiet_space:'Quiet space', room_tour_gdrive:'Room tour', outfits:'Outfits ready', outfits_gdrive:'Outfit photos', platforms:'Platforms', social_links:'Social links', has_onlyfans:'Has OnlyFans', onlyfans_link:'OnlyFans link', existing_content:'Existing content', agency_before:'Agency before', agency_experience:'Agency experience', anything_else:'Anything else' };
+    const checks = { equipment_list:[], platforms:[] };
+    let currentSec = 1;
 
     function updateProgress() {
-        const progress = (currentSection / totalSections) * 100;
-        document.getElementById('progressBar').style.width = progress + '%';
-        document.getElementById('progressText').textContent = `Section ${currentSection} of ${totalSections}`;
+        document.getElementById('progressFill').style.width = (currentSec/5*100)+'%';
+        document.getElementById('progressText').textContent = `Section ${currentSec} of 5`;
     }
-
-    function toggleOnlyFansLink() {
-        const val = document.getElementById('has_onlyfans').value;
-        document.getElementById('onlyfans_link_container').classList.toggle('hidden', val !== 'Yes');
+    function togglePill(el, group) {
+        const val = el.dataset.val;
+        if (checks[group].includes(val)) { checks[group]=checks[group].filter(v=>v!==val); el.classList.remove('checked'); }
+        else { checks[group].push(val); el.classList.add('checked'); }
     }
-
-    function toggleAgencyExperience() {
-        const val = document.getElementById('agency_before').value;
-        document.getElementById('agency_experience_container').classList.toggle('hidden', val !== 'Yes');
+    function toggleConditional(triggerId, showVals, targetId) {
+        const val = document.getElementById(triggerId).value;
+        document.getElementById(targetId).classList.toggle('hidden', !showVals.includes(val));
     }
-
-    function getCheckedValues(containerId) {
-        const checks = document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`);
-        return Array.from(checks).map(c => c.value);
+    function getVal(id) {
+        if (id in checks) return checks[id].join(', ');
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : '';
     }
-
-    function validateSection(sectionNum) {
-        const section = document.querySelector(`[data-section="${sectionNum}"]`);
-        const requiredInputs = section.querySelectorAll('[required]');
-        for (let input of requiredInputs) {
-            if (!input.value.trim()) {
-                input.focus();
+    function validate(secNum) {
+        for (const id of (REQUIRED[secNum]||[])) {
+            if (!getVal(id)) {
+                const el = document.getElementById(id);
+                if (el) { el.style.borderColor='#e53e3e'; el.focus(); }
                 alert('⚠️ Please fill in all required fields (marked with *)');
                 return false;
             }
         }
+        (REQUIRED[secNum]||[]).forEach(id => { const el=document.getElementById(id); if(el) el.style.borderColor='#e2e8f0'; });
         return true;
     }
-
-    function saveFormData() {
-        formData.lang = 'en';
-        formData.name = document.getElementById('name').value;
-        formData.age = document.getElementById('age').value;
-        formData.height = document.getElementById('height').value;
-        formData.nationality = document.getElementById('nationality').value;
-        formData.location = document.getElementById('location').value;
-        formData.job = document.getElementById('job').value;
-        formData.hobbies = document.getElementById('hobbies').value;
-        formData.talents = document.getElementById('talents').value;
-        formData.longterm_goal = document.getElementById('longterm_goal').value;
-        formData.income_goal = document.getElementById('income_goal').value;
-        formData.hours_per_day = document.getElementById('hours_per_day').value;
-        formData.availability = document.getElementById('availability').value;
-        formData.no_gos = document.getElementById('no_gos').value;
-        formData.phone_model = document.getElementById('phone_model').value;
-        formData.equipment_list = getCheckedValues('equipment_list');
-        formData.equipment_gdrive = document.getElementById('equipment_gdrive').value;
-        formData.quiet_space = document.getElementById('quiet_space').value;
-        formData.room_tour_gdrive = document.getElementById('room_tour_gdrive').value;
-        formData.outfits = document.getElementById('outfits').value;
-        formData.outfits_gdrive = document.getElementById('outfits_gdrive').value;
-        formData.platforms = getCheckedValues('platforms_list');
-        formData.social_links = document.getElementById('social_links').value;
-        formData.has_onlyfans = document.getElementById('has_onlyfans').value;
-        formData.onlyfans_link = document.getElementById('onlyfans_link').value;
-        formData.existing_content = document.getElementById('existing_content').value;
-        formData.agency_before = document.getElementById('agency_before').value;
-        formData.agency_experience = document.getElementById('agency_experience').value;
-        formData.anything_else = document.getElementById('anything_else').value;
+    function goTo(from, to) {
+        if (to > from && !validate(from)) return;
+        document.getElementById('sec'+from).classList.add('hidden');
+        document.getElementById('sec'+to).classList.remove('hidden');
+        currentSec = to; updateProgress(); window.scrollTo(0,0);
     }
-
-    function nextSection(current) {
-        if (!validateSection(current)) return;
-        saveFormData();
-        document.querySelector(`[data-section="${current}"]`).classList.add('hidden');
-        currentSection = current + 1;
-        document.querySelector(`[data-section="${currentSection}"]`).classList.remove('hidden');
-        updateProgress();
-        window.scrollTo(0, 0);
-    }
-
-    function previousSection(current) {
-        saveFormData();
-        document.querySelector(`[data-section="${current}"]`).classList.add('hidden');
-        currentSection = current - 1;
-        document.querySelector(`[data-section="${currentSection}"]`).classList.remove('hidden');
-        updateProgress();
-        window.scrollTo(0, 0);
-    }
-
-    function val(v) { return v && String(v).trim() ? String(v) : 'N/A'; }
-    function arr(v) { return Array.isArray(v) && v.length ? v.join(', ') : 'N/A'; }
-
     function showSummary() {
-        if (!validateSection(5)) return;
-        saveFormData();
-
-        const summaryHTML = `
-            <div class="summary-card">
-                <div class="summary-title">👤 Personal Info</div>
-                <div class="summary-item"><span class="summary-label">Name:</span> ${val(formData.name)}</div>
-                <div class="summary-item"><span class="summary-label">Age:</span> ${val(formData.age)}</div>
-                <div class="summary-item"><span class="summary-label">Height/Build:</span> ${val(formData.height)}</div>
-                <div class="summary-item"><span class="summary-label">Nationality:</span> ${val(formData.nationality)}</div>
-                <div class="summary-item"><span class="summary-label">Location:</span> ${val(formData.location)}</div>
-                ${formData.job ? `<div class="summary-item"><span class="summary-label">Job:</span> ${formData.job}</div>` : ''}
-                ${formData.hobbies ? `<div class="summary-item"><span class="summary-label">Hobbies:</span> ${formData.hobbies}</div>` : ''}
-                ${formData.talents ? `<div class="summary-item"><span class="summary-label">Talents:</span> ${formData.talents}</div>` : ''}
-            </div>
-            <div class="summary-card">
-                <div class="summary-title">🎯 Goals & Availability</div>
-                <div class="summary-item"><span class="summary-label">Long-term Goal:</span> ${val(formData.longterm_goal)}</div>
-                <div class="summary-item"><span class="summary-label">Income Goal:</span> ${val(formData.income_goal)}</div>
-                <div class="summary-item"><span class="summary-label">Hours/Day:</span> ${val(formData.hours_per_day)}</div>
-                <div class="summary-item"><span class="summary-label">Availability:</span> ${val(formData.availability)}</div>
-                <div class="summary-item"><span class="summary-label">No-Gos:</span> ${val(formData.no_gos)}</div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-title">📱 Equipment & Setup</div>
-                <div class="summary-item"><span class="summary-label">Phone:</span> ${val(formData.phone_model)}</div>
-                <div class="summary-item"><span class="summary-label">Equipment:</span> ${arr(formData.equipment_list)}</div>
-                <div class="summary-item"><span class="summary-label">Quiet Space:</span> ${val(formData.quiet_space)}</div>
-                <div class="summary-item"><span class="summary-label">Outfits Ready:</span> ${val(formData.outfits)}</div>
-                ${formData.equipment_gdrive ? `<div class="summary-item"><span class="summary-label">Equipment Photos:</span> ${formData.equipment_gdrive}</div>` : ''}
-                ${formData.room_tour_gdrive ? `<div class="summary-item"><span class="summary-label">Room Tour:</span> ${formData.room_tour_gdrive}</div>` : ''}
-                ${formData.outfits_gdrive ? `<div class="summary-item"><span class="summary-label">Outfit Photos:</span> ${formData.outfits_gdrive}</div>` : ''}
-            </div>
-            <div class="summary-card">
-                <div class="summary-title">📲 Social Media</div>
-                <div class="summary-item"><span class="summary-label">Platforms:</span> ${arr(formData.platforms)}</div>
-                ${formData.social_links ? `<div class="summary-item"><span class="summary-label">Links:</span> ${formData.social_links}</div>` : ''}
-                <div class="summary-item"><span class="summary-label">Has OnlyFans:</span> ${val(formData.has_onlyfans)}</div>
-                ${formData.onlyfans_link ? `<div class="summary-item"><span class="summary-label">OF Link:</span> ${formData.onlyfans_link}</div>` : ''}
-                <div class="summary-item"><span class="summary-label">Existing Content:</span> ${val(formData.existing_content)}</div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-title">ℹ️ Additional Info</div>
-                <div class="summary-item"><span class="summary-label">Agency Before:</span> ${val(formData.agency_before)}</div>
-                ${formData.agency_experience ? `<div class="summary-item"><span class="summary-label">Agency Exp:</span> ${formData.agency_experience}</div>` : ''}
-                ${formData.anything_else ? `<div class="summary-item"><span class="summary-label">Notes:</span> ${formData.anything_else}</div>` : ''}
-            </div>
-        `;
-
-        const qualHTML = checkQualification(formData);
-        document.getElementById('summaryContent').innerHTML = summaryHTML;
-        document.getElementById('qualificationCheck').innerHTML = qualHTML;
-        document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
-        document.getElementById('summarySection').classList.remove('hidden');
-        window.scrollTo(0, 0);
-    }
-
-    function checkQualification(data) {
-        let count = 0;
-        const checks = [];
-
-        if (parseInt(data.hours_per_day) >= 2) { count++; checks.push('✅ Min. 2 hrs/day available'); }
-        else checks.push('⚠️ Less than 2 hrs/day');
-
-        if (data.phone_model && data.phone_model.trim()) { count++; checks.push('✅ Smartphone available'); }
-        else checks.push('⚠️ No smartphone specified');
-
-        if (data.equipment_list && data.equipment_list.length > 0) { count++; checks.push('✅ Equipment available'); }
-        else checks.push('⚠️ No equipment listed');
-
-        if (data.platforms && data.platforms.length > 0) { count++; checks.push('✅ Social media accounts available'); }
-        else checks.push('⚠️ No social media platforms');
-
-        if (data.no_gos && data.no_gos.trim()) { count++; checks.push('✅ No-gos defined'); }
-        else checks.push('⚠️ No-gos not specified');
-
-        const isQualified = count >= 4;
-        const badgeClass = isQualified ? 'qualified' : 'needs-review';
-        const badgeText = isQualified ? '✅ QUALIFIED' : '⚠️ REVIEW REQUIRED';
-        return `
-            <div class="summary-card" style="margin-top:20px;">
-                <div class="summary-title">🎯 Qualification Check</div>
-                <div class="qualification-badge ${badgeClass}">${badgeText} (${count}/5)</div>
-                <div style="margin-top:15px;">${checks.map(c => `<div style="margin:5px 0;color:#4a5568;">${c}</div>`).join('')}</div>
-            </div>`;
-    }
-
-    function editForm() {
-        document.getElementById('summarySection').classList.add('hidden');
-        document.querySelector('[data-section="1"]').classList.remove('hidden');
-        currentSection = 1;
-        updateProgress();
-        window.scrollTo(0, 0);
-    }
-
-    async function submitForm() {
-        try {
-            formData.timestamp = new Date().toISOString();
-            formData.lang = 'en';
-            await sendToGoogleSheets(formData);
-            document.getElementById('summarySection').classList.add('hidden');
-            document.getElementById('successScreen').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        } catch (error) {
-            console.error('Error:', error);
-            alert('⚠️ There was an error submitting. Please try again or contact us directly via WhatsApp.');
-        }
-    }
-
-    async function sendToGoogleSheets(data) {
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbqaIcu-l06cpd5D3yJlsvD-TsFA5XqlMiib2PKk-qvsHYWIhCwSrDKxeExmNNU0Zenw/exec';
-        await fetch(GOOGLE_SHEETS_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+        if (!validate(5)) return;
+        let html = '';
+        SECTIONS_META.forEach(sec => {
+            const rows = sec.fields.map(id => {
+                const v = getVal(id); if (!v) return '';
+                return `<div class="summary-row"><span class="summary-label">${LABELS[id]}</span><span class="summary-val">${v}</span></div>`;
+            }).filter(Boolean).join('');
+            if (rows) html += `<div class="summary-block"><h3>${sec.title}</h3>${rows}</div>`;
         });
+        document.getElementById('summaryContent').innerHTML = html;
+        document.getElementById('sec5').classList.add('hidden');
+        document.getElementById('secSummary').classList.remove('hidden');
+        window.scrollTo(0,0);
     }
-
-    function copyToClipboard() {
-        const line = '━━━━━━━━━━━━━━━━━━';
-        let text = '🚀 CREATOR ONBOARDING — SUMMARY\n\n';
-        text += line + '\n👤 PERSONAL INFO\n' + line + '\n';
-        text += `Name: ${val(formData.name)}\nAge: ${val(formData.age)}\nHeight/Build: ${val(formData.height)}\nNationality: ${val(formData.nationality)}\nLocation: ${val(formData.location)}\n`;
-        if (formData.job) text += `Job: ${formData.job}\n`;
-        if (formData.hobbies) text += `Hobbies: ${formData.hobbies}\n`;
-        if (formData.talents) text += `Talents: ${formData.talents}\n`;
-        text += '\n' + line + '\n🎯 GOALS & AVAILABILITY\n' + line + '\n';
-        text += `Goal: ${val(formData.longterm_goal)}\nIncome Goal: ${val(formData.income_goal)}\nHours/Day: ${val(formData.hours_per_day)}\nAvailability: ${val(formData.availability)}\nNo-Gos: ${val(formData.no_gos)}\n`;
-        text += '\n' + line + '\n📱 EQUIPMENT\n' + line + '\n';
-        text += `Phone: ${val(formData.phone_model)}\nEquipment: ${arr(formData.equipment_list)}\nQuiet Space: ${val(formData.quiet_space)}\nOutfits: ${val(formData.outfits)}\n`;
-        if (formData.equipment_gdrive) text += `Equipment Photos: ${formData.equipment_gdrive}\n`;
-        if (formData.room_tour_gdrive) text += `Room Tour: ${formData.room_tour_gdrive}\n`;
-        if (formData.outfits_gdrive) text += `Outfit Photos: ${formData.outfits_gdrive}\n`;
-        text += '\n' + line + '\n📲 SOCIAL MEDIA\n' + line + '\n';
-        text += `Platforms: ${arr(formData.platforms)}\n`;
-        if (formData.social_links) text += `Links: ${formData.social_links}\n`;
-        text += `Has OnlyFans: ${val(formData.has_onlyfans)}\n`;
-        if (formData.onlyfans_link) text += `OF Link: ${formData.onlyfans_link}\n`;
-        text += `Existing Content: ${val(formData.existing_content)}\n`;
-        text += '\n' + line + '\nℹ️ ADDITIONAL INFO\n' + line + '\n';
-        text += `Agency Before: ${val(formData.agency_before)}\n`;
-        if (formData.agency_experience) text += `Agency Exp: ${formData.agency_experience}\n`;
-        if (formData.anything_else) text += `Notes: ${formData.anything_else}\n`;
-
-        navigator.clipboard.writeText(text).then(() => alert('✅ Summary copied to clipboard!'))
-            .catch(() => alert('⚠️ Copy failed. Please copy manually.'));
+    function editForm() {
+        document.getElementById('secSummary').classList.add('hidden');
+        document.getElementById('sec1').classList.remove('hidden');
+        currentSec=1; updateProgress(); window.scrollTo(0,0);
     }
-
+    async function submitForm() {
+        const payload = { lang:'en', timestamp: new Date().toISOString() };
+        SECTIONS_META.forEach(sec => sec.fields.forEach(id => { payload[id] = id in checks ? checks[id] : getVal(id); }));
+        try {
+            await fetch(SHEETS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+            document.getElementById('secSummary').classList.add('hidden');
+            document.getElementById('secSuccess').classList.remove('hidden');
+            window.scrollTo(0,0);
+        } catch(e) { alert('⚠️ Submit failed. Please try again or contact us via WhatsApp.'); }
+    }
+    function copyClipboard() {
+        let t = '=== CREATOR ONBOARDING ===\n\n';
+        SECTIONS_META.forEach(sec => {
+            t += sec.title+'\n';
+            sec.fields.forEach(id => { const v=getVal(id); if(v) t+=`${LABELS[id]}: ${v}\n`; });
+            t += '\n';
+        });
+        navigator.clipboard.writeText(t).then(()=>alert('✅ Copied to clipboard!')).catch(()=>alert('⚠️ Copy failed.'));
+    }
     updateProgress();
 </script>
 </body>

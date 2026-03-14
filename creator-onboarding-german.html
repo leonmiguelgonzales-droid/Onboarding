@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Onboarding - Traffic & Marketing</title>
+    <title>Creator Onboarding - Perlage Studios</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-image: 
+            background-image:
                 linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%),
                 url('https://i.imgur.com/Q3gfUqC.jpeg');
             background-size: cover, 50%;
@@ -24,7 +19,6 @@
             min-height: 100vh;
             padding: 20px;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -33,1013 +27,654 @@
             background-size: 40%;
             background-position: center center;
             background-repeat: no-repeat;
-            opacity: 1;
             border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
             position: relative;
         }
-
         .container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.85);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.88);
             pointer-events: none;
             z-index: 0;
         }
-
-        .container > * {
-            position: relative;
-            z-index: 1;
-        }
-
+        .container > * { position: relative; z-index: 1; }
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
+            color: white; padding: 40px; text-align: center;
         }
-
-        .header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
+        .header h1 { font-size: 2em; margin-bottom: 10px; font-weight: 700; }
+        .header p { opacity: 0.9; font-size: 1.1em; }
+        .content { padding: 40px; }
         .welcome-card {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-left: 4px solid #667eea;
+            border-radius: 12px; padding: 30px;
+            margin-bottom: 30px; border-left: 4px solid #667eea;
         }
-
-        .welcome-card h2 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .welcome-card p {
-            color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .progress-container {
-            margin-bottom: 30px;
-        }
-
+        .welcome-card h2 { color: #667eea; margin-bottom: 15px; font-size: 1.5em; }
+        .welcome-card p { color: #4a5568; line-height: 1.6; margin-bottom: 10px; }
+        .progress-container { margin-bottom: 30px; }
         .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
+            width: 100%; height: 8px;
+            background: #e2e8f0; border-radius: 10px;
+            overflow: hidden; margin-bottom: 10px;
         }
-
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition: width 0.5s ease;
+            width: 0%; transition: width 0.5s ease;
         }
-
-        .progress-text {
-            text-align: center;
-            color: #667eea;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
+        .progress-text { text-align: center; color: #667eea; font-weight: 600; font-size: 0.9em; }
+        .section { margin-bottom: 40px; }
         .section-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 1.3em;
-            font-weight: 600;
+            color: white; padding: 15px 20px; border-radius: 8px;
+            margin-bottom: 25px; font-size: 1.3em; font-weight: 600;
         }
-
-        .question {
-            margin-bottom: 30px;
+        .question { margin-bottom: 30px; }
+        .question-label { display: block; font-weight: 600; margin-bottom: 8px; color: #2d3748; font-size: 1em; }
+        .question-label .required { color: #e53e3e; }
+        .question-hint { display: block; font-size: 0.85em; color: #718096; margin-bottom: 10px; font-style: italic; }
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%; padding: 12px 16px;
+            border: 2px solid #e2e8f0; border-radius: 8px;
+            font-size: 1em; transition: all 0.2s ease;
+            background: white; color: #2d3748;
         }
-
-        .question-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #2d3748;
-            font-size: 1em;
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
         }
-
-        .question-label .required {
-            color: #e53e3e;
-        }
-
-        .question-hint {
-            display: block;
-            font-size: 0.85em;
-            color: #718096;
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        input[type="email"],
-        textarea,
+        textarea { min-height: 100px; resize: vertical; font-family: inherit; }
         select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: all 0.2s ease;
-            background: white;
-            color: #2d3748;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-            font-family: inherit;
-        }
-
-        select {
-            cursor: pointer;
-            appearance: none;
+            cursor: pointer; appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
             background-position: right 12px center;
-            background-size: 20px;
-            padding-right: 40px;
+            background-size: 20px; padding-right: 40px;
         }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
+        .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+        .checkbox-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px; border: 2px solid #e2e8f0;
+            border-radius: 8px; cursor: pointer; transition: all 0.2s;
         }
-
+        .checkbox-item:hover { border-color: #667eea; background: #f7f8ff; }
+        .checkbox-item input[type="checkbox"] {
+            width: 18px; height: 18px; cursor: pointer;
+            accent-color: #667eea; flex-shrink: 0;
+        }
+        .checkbox-item label { cursor: pointer; color: #2d3748; font-size: 0.95em; }
+        .button-group { display: flex; gap: 15px; margin-top: 30px; }
         button {
-            flex: 1;
-            padding: 14px 28px;
-            font-size: 1.05em;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            flex: 1; padding: 14px 28px;
+            font-size: 1.05em; font-weight: 600;
+            border: none; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s ease;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #f7fafc;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102,126,234,0.4); }
+        .btn-secondary { background: white; color: #667eea; border: 2px solid #667eea; }
+        .btn-secondary:hover { background: #f7fafc; }
+        .hidden { display: none !important; }
         .summary-card {
-            background: #f7fafc;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
+            background: #f7fafc; border-radius: 12px;
+            padding: 25px; margin-bottom: 20px;
             border-left: 4px solid #667eea;
         }
-
-        .summary-section {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
+        .summary-title { color: #667eea; font-weight: 700; font-size: 1.1em; margin-bottom: 10px; }
+        .summary-item { margin-bottom: 8px; color: #4a5568; line-height: 1.5; }
+        .summary-label { font-weight: 600; color: #2d3748; }
+        .qualification-badge {
+            display: inline-block; padding: 10px 20px;
+            border-radius: 8px; font-weight: 700;
+            font-size: 1.1em; margin: 10px 0;
         }
-
-        .summary-section:last-child {
-            border-bottom: none;
-        }
-
-        .summary-title {
-            color: #667eea;
-            font-weight: 700;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
-
-        .summary-item {
-            margin-bottom: 8px;
-            color: #4a5568;
-            line-height: 1.5;
-        }
-
-        .summary-label {
-            font-weight: 600;
-            color: #2d3748;
-        }
-
-        .success-screen {
-            text-align: center;
-            padding: 40px;
-        }
-
-        .success-icon {
-            font-size: 5em;
-            margin-bottom: 20px;
-            animation: bounce 1s ease;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .success-title {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .success-text {
-            color: #4a5568;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .copy-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 10px;
-            transition: all 0.2s ease;
-        }
-
-        .copy-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
+        .qualified { background: #c6f6d5; color: #22543d; }
+        .needs-review { background: #fed7d7; color: #742a2a; }
+        .success-screen { text-align: center; padding: 40px; }
+        .success-icon { font-size: 5em; margin-bottom: 20px; }
+        .success-title { color: #667eea; font-size: 2em; margin-bottom: 15px; font-weight: 700; }
+        .success-text { color: #4a5568; font-size: 1.1em; line-height: 1.6; margin-bottom: 20px; }
         .next-steps {
-            background: #fef5e7;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
+            background: #fef5e7; border-radius: 8px;
+            padding: 20px; margin: 20px 0;
             border-left: 4px solid #f39c12;
         }
-
-        .next-steps-title {
-            color: #f39c12;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .next-steps ul {
-            list-style-position: inside;
-            color: #4a5568;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-
-            .header {
-                padding: 30px 20px;
-            }
-
-            .header h1 {
-                font-size: 1.5em;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
-
-        /* Qualification Check Styling */
-        .qualification-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-top: 20px;
-        }
-
-        .qualified {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .needs-review {
-            background: #fff3cd;
-            color: #856404;
+        .next-steps-title { color: #f39c12; font-weight: 700; margin-bottom: 10px; }
+        @media (max-width: 600px) {
+            .button-group { flex-direction: column; }
+            .header h1 { font-size: 1.5em; }
+            .content { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Perlage Creator Onboarding</h1>
-            <p>Traffic & Marketing - Dein Weg zum Erfolg</p>
-        </div>
-
-        <div class="content">
-            <!-- Welcome Card -->
-            <div class="welcome-card">
-                <h2>👋 Willkommen!</h2>
-                <p>Wir freuen uns, dich kennenzulernen. Dieser Fragebogen hilft uns, deine Situation, Ziele und technische Ausstattung zu verstehen, damit wir dir die bestmögliche Unterstützung bieten können.</p>
-                <p><strong>Bitte beantworte alle Fragen ehrlich.</strong></p>
-                <p>⏱️ Zeitbedarf: ca. 5-7 Minuten</p>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar"></div>
-                </div>
-                <div class="progress-text" id="progressText">Abschnitt 1 von 4</div>
-            </div>
-
-            <form id="onboardingForm">
-                    <!-- Section A: Personal Basics -->
-                    <div class="section" data-section="1">
-                        <div class="section-header">👤 A) Persönliche Basics</div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                1. Wie alt bist du? <span class="required">*</span>
-                            </label>
-                            <input type="number" name="age" required min="18" max="99" placeholder="z.B. 25">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                2. In welchem Land lebst du aktuell? <span class="required">*</span>
-                            </label>
-                            <input type="text" name="country" required placeholder="z.B. Deutschland">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                3. Was ist deine Nationalität? <span class="required">*</span>
-                            </label>
-                            <input type="text" name="nationality" required placeholder="z.B. Deutsch">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                4. Wie groß bist du und wie würdest du deinen Körperbau beschreiben? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">💡 z.B. 1,65m, athletisch</span>
-                            <input type="text" name="height_build" required placeholder="z.B. 1,70m, schlank">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                5. Hast du Tattoos oder Piercings? Falls ja, welche und wo?
-                            </label>
-                            <span class="question-hint">💡 z.B. Kleine Rose am Handgelenk, Bauchnabelpiercing...</span>
-                            <textarea name="tattoos_piercings" placeholder="Beschreibe deine Tattoos/Piercings oder schreibe 'keine'"></textarea>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                6. Was ist dein aktueller Beziehungsstatus? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">(Relevant für Reel-Content)</span>
-                            <select name="relationship_status" required>
-                                <option value="">Bitte wählen...</option>
-                                <option value="single">Single</option>
-                                <option value="relationship">In einer Beziehung</option>
-                                <option value="married">Verheiratet</option>
-                                <option value="complicated">Es ist kompliziert</option>
-                                <option value="no_answer">Möchte ich nicht sagen</option>
-                            </select>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                7. Was ist deine aktuelle Wohnsituation? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">z.B. alleine, Mitbewohner, mit Partner, bei Familie...</span>
-                            <select name="living_situation" required>
-                                <option value="">Bitte wählen...</option>
-                                <option value="alone">Alleine</option>
-                                <option value="roommates">Mit Mitbewohnern</option>
-                                <option value="partner">Mit Partner</option>
-                                <option value="family">Bei Familie</option>
-                                <option value="other">Andere</option>
-                            </select>
-                        </div>
-
-                        <div class="button-group">
-                            <button type="button" class="btn-primary" onclick="nextSection(2)">Weiter →</button>
-                        </div>
-                    </div>
-
-                    <!-- Section B: Availability -->
-                    <div class="section hidden" data-section="2">
-                        <div class="section-header">⏱️ B) Verfügbarkeit & Commitment</div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                1. Wie viele Stunden pro Woche kannst du realistisch investieren? <span class="required">*</span>
-                            </label>
-                            <input type="number" name="hours_per_week" required min="1" max="168" placeholder="z.B. 20">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                2. Zu welchen Tageszeiten bist du am aktivsten/produktivsten? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">💡 z.B. Morgens 9-12 Uhr, Abends nach 19 Uhr...</span>
-                            <textarea name="productive_times" required placeholder="Beschreibe deine produktivsten Zeiten..."></textarea>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                3. Gibt es bestimmte Tage, an denen du Content erstellen kannst? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">💡 z.B. Mittwochs ganztags, Wochenenden...</span>
-                            <textarea name="content_days" required placeholder="z.B. Samstag und Sonntag ganztags"></textarea>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                4. Hast du aktuell einen Voll- oder Teilzeitjob? <span class="required">*</span>
-                            </label>
-                            <select name="has_job" required onchange="toggleJobHours(this)">
-                                <option value="">Bitte wählen...</option>
-                                <option value="no">Nein</option>
-                                <option value="fulltime">Ja, Vollzeit</option>
-                                <option value="parttime">Ja, Teilzeit</option>
-                            </select>
-                        </div>
-
-                        <div class="question hidden" id="jobHoursQuestion">
-                            <label class="question-label">Falls ja: Wie viele Stunden pro Woche?</label>
-                            <input type="number" name="job_hours" min="1" max="80" placeholder="z.B. 40">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                5. Wie lange planst du, OnlyFans ernsthaft zu betreiben? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">💡 z.B. 1 Jahr, 3 Jahre, langfristig</span>
-                            <select name="commitment_duration" required>
-                                <option value="">Bitte wählen...</option>
-                                <option value="3-6months">3-6 Monate (Testing)</option>
-                                <option value="1year">1 Jahr</option>
-                                <option value="2-3years">2-3 Jahre</option>
-                                <option value="longterm">Langfristig (3+ Jahre)</option>
-                                <option value="as_long">So lange es funktioniert</option>
-                            </select>
-                        </div>
-
-                        <div class="button-group">
-                            <button type="button" class="btn-secondary" onclick="previousSection(1)">← Zurück</button>
-                            <button type="button" class="btn-primary" onclick="nextSection(3)">Weiter →</button>
-                        </div>
-                    </div>
-
-                    <!-- Section C: Equipment -->
-                    <div class="section hidden" data-section="3">
-                        <div class="section-header">📱 C) Technische Ausstattung</div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                1. Welches Handy benutzt du aktuell? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">💡 Gib bitte das Modell an, z.B. iPhone 14 Pro, Samsung Galaxy S23</span>
-                            <input type="text" name="phone_model" required placeholder="z.B. iPhone 13">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                2. Hast du ein Ringlicht oder eine Softbox? <span class="required">*</span>
-                            </label>
-                            <select name="has_ringlight" required onchange="toggleRinglightDetails(this)">
-                                <option value="">Bitte wählen...</option>
-                                <option value="no">Nein</option>
-                                <option value="ringlight">Ja, Ringlicht</option>
-                                <option value="softbox">Ja, Softbox</option>
-                                <option value="both">Beides</option>
-                            </select>
-                        </div>
-
-                        <div class="question hidden" id="ringlightDetailsQuestion">
-                            <label class="question-label">Falls ja: Welches Modell/Marke?</label>
-                            <span class="question-hint">⚠️ WICHTIG: Foto bitte später per WhatsApp senden!</span>
-                            <input type="text" name="ringlight_model" placeholder="z.B. Neewer 18 Zoll">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                3. Hast du ein Stativ? <span class="required">*</span>
-                            </label>
-                            <select name="has_tripod" required onchange="toggleTripodDetails(this)">
-                                <option value="">Bitte wählen...</option>
-                                <option value="no">Nein</option>
-                                <option value="small">Ja, kleines Tischstativ</option>
-                                <option value="large">Ja, großes Bodenstativ</option>
-                                <option value="both">Beides</option>
-                            </select>
-                        </div>
-
-                        <div class="question hidden" id="tripodDetailsQuestion">
-                            <label class="question-label">Falls ja: Welches Modell?</label>
-                            <span class="question-hint">⚠️ WICHTIG: Foto bitte später per WhatsApp senden!</span>
-                            <input type="text" name="tripod_model" placeholder="z.B. Manfrotto Compact">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                4. Hast du ein Auto? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">(für mögliche Reel-Settings)</span>
-                            <select name="has_car" required>
-                                <option value="">Bitte wählen...</option>
-                                <option value="no">Nein</option>
-                                <option value="yes">Ja</option>
-                            </select>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                5. Hast du ein externes Mikrofon oder Lavalier-Mic? <span class="required">*</span>
-                            </label>
-                            <select name="has_microphone" required>
-                                <option value="">Bitte wählen...</option>
-                                <option value="no">Nein</option>
-                                <option value="external">Ja, externes Mikrofon</option>
-                                <option value="lavalier">Ja, Lavalier-Mic</option>
-                                <option value="both">Beides</option>
-                            </select>
-                        </div>
-
-                        <div class="button-group">
-                            <button type="button" class="btn-secondary" onclick="previousSection(2)">← Zurück</button>
-                            <button type="button" class="btn-primary" onclick="nextSection(4)">Weiter →</button>
-                        </div>
-                    </div>
-
-                    <!-- Section D: Social Media -->
-                    <div class="section hidden" data-section="4">
-                        <div class="section-header">📲 D) Social Media & Online Präsenz</div>
-
-                        <div class="question">
-                            <label class="question-label">Hast du Social-Media-Accounts, die wir nutzen können?</label>
-                            <span class="question-hint">Bitte sende uns die Links oder @Usernamen:</span>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">Instagram</label>
-                            <input type="text" name="instagram" placeholder="@deinusername oder Link">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">TikTok</label>
-                            <input type="text" name="tiktok" placeholder="@deinusername oder Link">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">Twitter/X</label>
-                            <input type="text" name="twitter" placeholder="@deinusername oder Link">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">YouTube</label>
-                            <input type="text" name="youtube" placeholder="Kanal-Link">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">Andere Plattformen</label>
-                            <span class="question-hint">z.B. Snapchat, Reddit, Telegram...</span>
-                            <input type="text" name="other_platforms" placeholder="z.B. Snapchat: @username">
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">
-                                Wie würdest du deine Social-Media-Erfahrung einschätzen? <span class="required">*</span>
-                            </label>
-                            <span class="question-hint">💡 z.B. Anfänger, Grundkenntnisse, Fortgeschritten, Profi (10k+ Follower)</span>
-                            <select name="social_experience" required>
-                                <option value="">Bitte wählen...</option>
-                                <option value="beginner">Kompletter Anfänger</option>
-                                <option value="basic">Grundkenntnisse</option>
-                                <option value="advanced">Fortgeschritten</option>
-                                <option value="pro">Profi (10k+ Follower)</option>
-                                <option value="expert">Experte (100k+ Follower)</option>
-                            </select>
-                        </div>
-
-                        <div class="question">
-                            <label class="question-label">Gibt es Länder, die du auf OnlyFans blocken möchtest?</label>
-                            <span class="question-hint">(z.B. wenn du aus Frankreich kommst und dort nicht sichtbar sein möchtest)</span>
-                            <textarea name="geo_blocking" placeholder="z.B. Deutschland, Österreich, Schweiz... oder 'keine'"></textarea>
-                        </div>
-
-                        <div class="button-group">
-                            <button type="button" class="btn-secondary" onclick="previousSection(3)">← Zurück</button>
-                            <button type="button" class="btn-primary" onclick="showSummary()">Zusammenfassung ansehen →</button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Summary Section -->
-                <div id="summarySection" class="hidden">
-                    <div class="section-header">📋 Zusammenfassung deiner Angaben</div>
-                    <div id="summaryContent"></div>
-                    <div id="qualificationCheck"></div>
-                    <div class="button-group">
-                        <button type="button" class="btn-secondary" onclick="editForm()">← Bearbeiten</button>
-                        <button type="button" class="btn-primary" onclick="submitForm()">Absenden 🚀</button>
-                    </div>
-                </div>
-
-                <!-- Success Screen -->
-                <div id="successScreen" class="hidden">
-                    <div class="success-screen">
-                        <div class="success-icon">✅</div>
-                        <h2 class="success-title">Perfekt! Deine Daten wurden erfolgreich übermittelt! 🎉</h2>
-                        <p class="success-text">
-                            Wir haben deine Antworten erhalten und melden uns innerhalb von 24h bei dir.
-                        </p>
-                        
-                        <div class="next-steps">
-                            <div class="next-steps-title">📸 Nächste Schritte:</div>
-                            <p style="margin-bottom: 10px; color: #4a5568;">Bitte sende uns noch per WhatsApp:</p>
-                            <ul>
-                                <li>Foto von deinem Ringlicht (falls vorhanden)</li>
-                                <li>Foto von deinem Stativ (falls vorhanden)</li>
-                            </ul>
-                        </div>
-
-                        <button class="copy-button" onclick="copyToClipboard()">📋 Zusammenfassung kopieren</button>
-
-                        <p style="margin-top: 30px; color: #718096; font-size: 0.95em;">
-                            Dein Marketing-Team 💜
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div class="header">
+        <h1>Perlage Creator Onboarding</h1>
+        <p>Dein Weg zum Erfolg – Los geht's!</p>
     </div>
+    <div class="content">
 
-    <script>
-        let currentSection = 1;
-        let formData = {};
+        <div class="welcome-card">
+            <h2>👋 Willkommen!</h2>
+            <p>Wir freuen uns, dich kennenzulernen. Dieser Fragebogen hilft uns, deine Situation, Ziele und technische Ausstattung zu verstehen, damit wir dir die bestmögliche Unterstützung bieten können.</p>
+            <p><strong>Bitte beantworte alle Fragen ehrlich.</strong></p>
+            <p>⏱️ Zeitbedarf: ca. 5-7 Minuten</p>
+        </div>
 
-        function updateProgress() {
-            const progress = (currentSection / 4) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            document.getElementById('progressText').textContent = `Abschnitt ${currentSection} von 4`;
-        }
+        <div class="progress-container">
+            <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+            <div class="progress-text" id="progressText">Abschnitt 1 von 5</div>
+        </div>
 
-        function validateSection(section) {
-            const sectionElement = document.querySelector(`[data-section="${section}"]`);
-            const requiredInputs = sectionElement.querySelectorAll('input[required], select[required], textarea[required]');
-            let isValid = true;
+        <!-- Section 1: Personal Info -->
+        <div class="section" data-section="1">
+            <div class="section-header">👤 Abschnitt 1 — Persönliche Infos</div>
 
-            requiredInputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = '#e53e3e';
-                } else {
-                    input.style.borderColor = '#e2e8f0';
-                }
-            });
+            <div class="question">
+                <label class="question-label">Name / Künstlername <span class="required">*</span></label>
+                <input type="text" id="name" placeholder="z.B. Jessica Rose" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Alter <span class="required">*</span></label>
+                <input type="number" id="age" min="18" max="99" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Größe & Körperbau <span class="required">*</span></label>
+                <span class="question-hint">z.B. „170 cm, schlank" oder „1,75 m, athletisch"</span>
+                <input type="text" id="height" placeholder="z.B. 170 cm, schlank" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Nationalität <span class="required">*</span></label>
+                <input type="text" id="nationality" placeholder="z.B. Deutsch" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Land / Stadt <span class="required">*</span></label>
+                <input type="text" id="location" placeholder="z.B. Berlin, Deutschland" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Job / Beschäftigung</label>
+                <span class="question-hint">Aktueller Job oder Studentenstatus</span>
+                <input type="text" id="job" placeholder="z.B. Krankenpflege, Student, Freelancer">
+            </div>
+            <div class="question">
+                <label class="question-label">Hobbys</label>
+                <input type="text" id="hobbies" placeholder="z.B. Fitness, Reisen, Kochen">
+            </div>
+            <div class="question">
+                <label class="question-label">Besondere Talente</label>
+                <input type="text" id="talents" placeholder="z.B. Tanzen, Singen, Kunst">
+            </div>
 
-            if (!isValid) {
+            <div class="button-group">
+                <button type="button" class="btn-primary" onclick="nextSection(1)">Weiter →</button>
+            </div>
+        </div>
+
+        <!-- Section 2: Goals & Availability -->
+        <div class="section hidden" data-section="2">
+            <div class="section-header">🎯 Abschnitt 2 — Ziele & Verfügbarkeit</div>
+
+            <div class="question">
+                <label class="question-label">Langfristiges Ziel <span class="required">*</span></label>
+                <span class="question-hint">Was möchtest du in den nächsten 1-2 Jahren erreichen?</span>
+                <textarea id="longterm_goal" placeholder="z.B. Finanzielle Freiheit, eigene Marke aufbauen, Vollzeit-Creator werden..." required></textarea>
+            </div>
+            <div class="question">
+                <label class="question-label">Monatliches Einkommensziel <span class="required">*</span></label>
+                <span class="question-hint">Wie viel möchtest du pro Monat verdienen?</span>
+                <input type="text" id="income_goal" placeholder="z.B. 3.000 € / Monat" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Verfügbare Stunden pro Tag <span class="required">*</span></label>
+                <span class="question-hint">Realistische tägliche Stunden (mind. 2-3 Stunden)</span>
+                <input type="number" id="hours_per_day" min="1" max="24" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Verfügbarkeit / Zeitplan <span class="required">*</span></label>
+                <span class="question-hint">An welchen Tagen und zu welchen Zeiten bist du verfügbar?</span>
+                <textarea id="availability" placeholder="z.B. Mo-Fr abends, Wochenende ganztags..." required></textarea>
+            </div>
+            <div class="question">
+                <label class="question-label">No-Gos / Absolute Grenzen <span class="required">*</span></label>
+                <span class="question-hint">Was wirst du NICHT machen (inhaltlich)</span>
+                <textarea id="no_gos" placeholder="z.B. Kein Gesicht zeigen, kein expliziter Content, kein Pärchen-Content..." required></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousSection(2)">← Zurück</button>
+                <button type="button" class="btn-primary" onclick="nextSection(2)">Weiter →</button>
+            </div>
+        </div>
+
+        <!-- Section 3: Equipment -->
+        <div class="section hidden" data-section="3">
+            <div class="section-header">📱 Abschnitt 3 — Ausstattung & Setup</div>
+
+            <div class="question">
+                <label class="question-label">Handy-Modell <span class="required">*</span></label>
+                <span class="question-hint">z.B. iPhone 14 Pro, Samsung Galaxy S23</span>
+                <input type="text" id="phone_model" placeholder="z.B. iPhone 13" required>
+            </div>
+            <div class="question">
+                <label class="question-label">Vorhandene Ausrüstung</label>
+                <span class="question-hint">Alles Zutreffende auswählen</span>
+                <div class="checkbox-group" id="equipment_list">
+                    <div class="checkbox-item"><input type="checkbox" id="eq_ringlight" value="Ringlicht"><label for="eq_ringlight">Ringlicht</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="eq_tripod" value="Stativ"><label for="eq_tripod">Stativ</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="eq_softbox" value="Softbox"><label for="eq_softbox">Softbox / Studiolicht</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="eq_microphone" value="Mikrofon"><label for="eq_microphone">Mikrofon</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="eq_camera" value="Kamera"><label for="eq_camera">Kamera (DSLR/Systemkamera)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="eq_car" value="Auto"><label for="eq_car">Auto (für Content-Settings)</label></div>
+                </div>
+            </div>
+            <div class="question">
+                <label class="question-label">Ausrüstungsfotos (Google Drive Link)</label>
+                <span class="question-hint">Optional: Fotos deines Setups teilen</span>
+                <input type="text" id="equipment_gdrive" placeholder="https://drive.google.com/...">
+            </div>
+            <div class="question">
+                <label class="question-label">Hast du einen ruhigen, privaten Aufnahmeraum? <span class="required">*</span></label>
+                <select id="quiet_space" required>
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="Ja, privates Zimmer">Ja, privates Zimmer</option>
+                    <option value="Ja, aber manchmal geteilt">Ja, aber manchmal geteilt</option>
+                    <option value="Nein">Nein</option>
+                </select>
+            </div>
+            <div class="question">
+                <label class="question-label">Zimmer-Tour (Google Drive Link)</label>
+                <span class="question-hint">Optional: Kurzes Video/Fotos deines Aufnahmeraums</span>
+                <input type="text" id="room_tour_gdrive" placeholder="https://drive.google.com/...">
+            </div>
+            <div class="question">
+                <label class="question-label">Hast du Outfits bereit? <span class="required">*</span></label>
+                <select id="outfits" required>
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="Ja, viele">Ja, viele Outfits bereit</option>
+                    <option value="Ja, einige">Ja, einige</option>
+                    <option value="Nein, muss noch kaufen">Nein, muss noch welche kaufen</option>
+                </select>
+            </div>
+            <div class="question">
+                <label class="question-label">Outfit-Fotos (Google Drive Link)</label>
+                <span class="question-hint">Optional: Fotos deiner Outfits teilen</span>
+                <input type="text" id="outfits_gdrive" placeholder="https://drive.google.com/...">
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousSection(3)">← Zurück</button>
+                <button type="button" class="btn-primary" onclick="nextSection(3)">Weiter →</button>
+            </div>
+        </div>
+
+        <!-- Section 4: Social Media -->
+        <div class="section hidden" data-section="4">
+            <div class="section-header">📲 Abschnitt 4 — Social Media</div>
+
+            <div class="question">
+                <label class="question-label">Welche Plattformen nutzt du?</label>
+                <span class="question-hint">Alles Zutreffende auswählen</span>
+                <div class="checkbox-group" id="platforms_list">
+                    <div class="checkbox-item"><input type="checkbox" id="pl_instagram" value="Instagram"><label for="pl_instagram">Instagram</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pl_tiktok" value="TikTok"><label for="pl_tiktok">TikTok</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pl_twitter" value="Twitter/X"><label for="pl_twitter">Twitter / X</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pl_facebook" value="Facebook"><label for="pl_facebook">Facebook</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pl_youtube" value="YouTube"><label for="pl_youtube">YouTube</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pl_snapchat" value="Snapchat"><label for="pl_snapchat">Snapchat</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="pl_reddit" value="Reddit"><label for="pl_reddit">Reddit</label></div>
+                </div>
+            </div>
+            <div class="question">
+                <label class="question-label">Social Media Links / Benutzernamen</label>
+                <span class="question-hint">Deine Handles oder Profillinks auflisten</span>
+                <textarea id="social_links" placeholder="z.B. Instagram: @username, TikTok: @username..."></textarea>
+            </div>
+            <div class="question">
+                <label class="question-label">Hast du bereits einen OnlyFans? <span class="required">*</span></label>
+                <select id="has_onlyfans" required onchange="toggleOnlyFansLink()">
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="Ja">Ja</option>
+                    <option value="Nein">Nein</option>
+                </select>
+            </div>
+            <div class="question hidden" id="onlyfans_link_container">
+                <label class="question-label">OnlyFans Link / Benutzername</label>
+                <input type="text" id="onlyfans_link" placeholder="https://onlyfans.com/...">
+            </div>
+            <div class="question">
+                <label class="question-label">Hast du bereits bestehenden Content? <span class="required">*</span></label>
+                <select id="existing_content" required>
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="Ja, viel">Ja, viel bestehender Content</option>
+                    <option value="Ja, etwas">Ja, etwas Content</option>
+                    <option value="Nein">Nein, starte neu</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousSection(4)">← Zurück</button>
+                <button type="button" class="btn-primary" onclick="nextSection(4)">Weiter →</button>
+            </div>
+        </div>
+
+        <!-- Section 5: Extra Info -->
+        <div class="section hidden" data-section="5">
+            <div class="section-header">ℹ️ Abschnitt 5 — Zusätzliche Infos</div>
+
+            <div class="question">
+                <label class="question-label">Hast du schon mit einer Agentur zusammengearbeitet? <span class="required">*</span></label>
+                <select id="agency_before" required onchange="toggleAgencyExperience()">
+                    <option value="">-- Bitte wählen --</option>
+                    <option value="Ja">Ja</option>
+                    <option value="Nein">Nein</option>
+                </select>
+            </div>
+            <div class="question hidden" id="agency_experience_container">
+                <label class="question-label">Beschreibe deine Agenturerfahrung</label>
+                <span class="question-hint">Was hat funktioniert? Was nicht? Warum bist du gegangen?</span>
+                <textarea id="agency_experience" placeholder="Erzähl uns von deiner bisherigen Agentur..."></textarea>
+            </div>
+            <div class="question">
+                <label class="question-label">Gibt es noch etwas, das wir wissen sollten?</label>
+                <span class="question-hint">Fragen, besondere Umstände, zusätzlicher Kontext...</span>
+                <textarea id="anything_else" placeholder="Teile gerne alles mit..."></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="previousSection(5)">← Zurück</button>
+                <button type="button" class="btn-primary" onclick="showSummary()">Zusammenfassung ansehen →</button>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="section hidden" id="summarySection">
+            <div class="section-header">📋 Zusammenfassung deiner Angaben</div>
+            <div id="summaryContent"></div>
+            <div id="qualificationCheck"></div>
+            <div class="button-group">
+                <button type="button" class="btn-secondary" onclick="editForm()">✏️ Bearbeiten</button>
+                <button type="button" class="btn-secondary" onclick="copyToClipboard()">📋 Kopieren</button>
+                <button type="button" class="btn-primary" onclick="submitForm()">✅ Absenden</button>
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="section hidden" id="successScreen">
+            <div class="success-screen">
+                <div class="success-icon">✅</div>
+                <h2 class="success-title">Perfekt! Deine Daten wurden erfolgreich übermittelt! 🎉</h2>
+                <p class="success-text">Wir haben deine Antworten erhalten und melden uns innerhalb von 24h bei dir.</p>
+                <div class="next-steps">
+                    <div class="next-steps-title">📸 Nächste Schritte:</div>
+                    <p style="margin-bottom:10px;color:#4a5568;">Bitte sende uns noch per WhatsApp:</p>
+                    <ul style="list-style-position:inside;color:#4a5568;">
+                        <li>Foto von deinem Ringlicht (falls vorhanden)</li>
+                        <li>Foto von deinem Stativ (falls vorhanden)</li>
+                    </ul>
+                </div>
+                <p style="margin-top:30px;color:#718096;font-size:0.95em;">Dein Marketing-Team 💜</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let currentSection = 1;
+    const totalSections = 5;
+    let formData = {};
+
+    function updateProgress() {
+        const progress = (currentSection / totalSections) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+        document.getElementById('progressText').textContent = `Abschnitt ${currentSection} von ${totalSections}`;
+    }
+
+    function toggleOnlyFansLink() {
+        const val = document.getElementById('has_onlyfans').value;
+        document.getElementById('onlyfans_link_container').classList.toggle('hidden', val !== 'Ja');
+    }
+
+    function toggleAgencyExperience() {
+        const val = document.getElementById('agency_before').value;
+        document.getElementById('agency_experience_container').classList.toggle('hidden', val !== 'Ja');
+    }
+
+    function getCheckedValues(containerId) {
+        const checks = document.querySelectorAll(`#${containerId} input[type="checkbox"]:checked`);
+        return Array.from(checks).map(c => c.value);
+    }
+
+    function validateSection(sectionNum) {
+        const section = document.querySelector(`[data-section="${sectionNum}"]`);
+        const requiredInputs = section.querySelectorAll('[required]');
+        for (let input of requiredInputs) {
+            if (!input.value.trim()) {
+                input.style.borderColor = '#e53e3e';
+                input.focus();
                 alert('⚠️ Bitte fülle alle Pflichtfelder (*) aus!');
-            }
-
-            return isValid;
-        }
-
-        function nextSection(section) {
-            if (!validateSection(currentSection)) return;
-
-            document.querySelector(`[data-section="${currentSection}"]`).classList.add('hidden');
-            document.querySelector(`[data-section="${section}"]`).classList.remove('hidden');
-            currentSection = section;
-            updateProgress();
-            window.scrollTo(0, 0);
-        }
-
-        function previousSection(section) {
-            document.querySelector(`[data-section="${currentSection}"]`).classList.add('hidden');
-            document.querySelector(`[data-section="${section}"]`).classList.remove('hidden');
-            currentSection = section;
-            updateProgress();
-            window.scrollTo(0, 0);
-        }
-
-        function toggleJobHours(select) {
-            const jobHoursQuestion = document.getElementById('jobHoursQuestion');
-            if (select.value === 'fulltime' || select.value === 'parttime') {
-                jobHoursQuestion.classList.remove('hidden');
+                return false;
             } else {
-                jobHoursQuestion.classList.add('hidden');
+                input.style.borderColor = '#e2e8f0';
             }
         }
+        return true;
+    }
 
-        function toggleRinglightDetails(select) {
-            const detailsQuestion = document.getElementById('ringlightDetailsQuestion');
-            if (select.value !== 'no' && select.value !== '') {
-                detailsQuestion.classList.remove('hidden');
-            } else {
-                detailsQuestion.classList.add('hidden');
-            }
-        }
+    function saveFormData() {
+        formData.lang = 'de';
+        formData.name = document.getElementById('name').value;
+        formData.age = document.getElementById('age').value;
+        formData.height = document.getElementById('height').value;
+        formData.nationality = document.getElementById('nationality').value;
+        formData.location = document.getElementById('location').value;
+        formData.job = document.getElementById('job').value;
+        formData.hobbies = document.getElementById('hobbies').value;
+        formData.talents = document.getElementById('talents').value;
+        formData.longterm_goal = document.getElementById('longterm_goal').value;
+        formData.income_goal = document.getElementById('income_goal').value;
+        formData.hours_per_day = document.getElementById('hours_per_day').value;
+        formData.availability = document.getElementById('availability').value;
+        formData.no_gos = document.getElementById('no_gos').value;
+        formData.phone_model = document.getElementById('phone_model').value;
+        formData.equipment_list = getCheckedValues('equipment_list');
+        formData.equipment_gdrive = document.getElementById('equipment_gdrive').value;
+        formData.quiet_space = document.getElementById('quiet_space').value;
+        formData.room_tour_gdrive = document.getElementById('room_tour_gdrive').value;
+        formData.outfits = document.getElementById('outfits').value;
+        formData.outfits_gdrive = document.getElementById('outfits_gdrive').value;
+        formData.platforms = getCheckedValues('platforms_list');
+        formData.social_links = document.getElementById('social_links').value;
+        formData.has_onlyfans = document.getElementById('has_onlyfans').value;
+        formData.onlyfans_link = document.getElementById('onlyfans_link').value;
+        formData.existing_content = document.getElementById('existing_content').value;
+        formData.agency_before = document.getElementById('agency_before').value;
+        formData.agency_experience = document.getElementById('agency_experience').value;
+        formData.anything_else = document.getElementById('anything_else').value;
+    }
 
-        function toggleTripodDetails(select) {
-            const detailsQuestion = document.getElementById('tripodDetailsQuestion');
-            if (select.value !== 'no' && select.value !== '') {
-                detailsQuestion.classList.remove('hidden');
-            } else {
-                detailsQuestion.classList.add('hidden');
-            }
-        }
-
-        function showSummary() {
-            if (!validateSection(currentSection)) return;
-
-            // Collect form data
-            const form = document.getElementById('onboardingForm');
-            const formDataObj = new FormData(form);
-            formData = {};
-
-            for (let [key, value] of formDataObj.entries()) {
-                formData[key] = value;
-            }
-
-            // Generate summary
-            const summaryHTML = `
-                <div class="summary-card">
-                    <div class="summary-section">
-                        <div class="summary-title">👤 Persönliche Basics</div>
-                        <div class="summary-item"><span class="summary-label">Alter:</span> ${formData.age}</div>
-                        <div class="summary-item"><span class="summary-label">Land:</span> ${formData.country}</div>
-                        <div class="summary-item"><span class="summary-label">Nationalität:</span> ${formData.nationality}</div>
-                        <div class="summary-item"><span class="summary-label">Größe/Körperbau:</span> ${formData.height_build}</div>
-                        ${formData.tattoos_piercings ? `<div class="summary-item"><span class="summary-label">Tattoos/Piercings:</span> ${formData.tattoos_piercings}</div>` : ''}
-                        <div class="summary-item"><span class="summary-label">Beziehungsstatus:</span> ${formData.relationship_status}</div>
-                        <div class="summary-item"><span class="summary-label">Wohnsituation:</span> ${formData.living_situation}</div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-title">⏱️ Verfügbarkeit & Commitment</div>
-                        <div class="summary-item"><span class="summary-label">Stunden/Woche:</span> ${formData.hours_per_week}</div>
-                        <div class="summary-item"><span class="summary-label">Produktive Zeiten:</span> ${formData.productive_times}</div>
-                        <div class="summary-item"><span class="summary-label">Content-Tage:</span> ${formData.content_days}</div>
-                        <div class="summary-item"><span class="summary-label">Job:</span> ${formData.has_job}${formData.job_hours ? ' (' + formData.job_hours + 'h/Woche)' : ''}</div>
-                        <div class="summary-item"><span class="summary-label">Commitment:</span> ${formData.commitment_duration}</div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-title">📱 Technische Ausstattung</div>
-                        <div class="summary-item"><span class="summary-label">Handy:</span> ${formData.phone_model}</div>
-                        <div class="summary-item"><span class="summary-label">Ringlicht:</span> ${formData.has_ringlight}${formData.ringlight_model ? ' (' + formData.ringlight_model + ')' : ''}</div>
-                        <div class="summary-item"><span class="summary-label">Stativ:</span> ${formData.has_tripod}${formData.tripod_model ? ' (' + formData.tripod_model + ')' : ''}</div>
-                        <div class="summary-item"><span class="summary-label">Auto:</span> ${formData.has_car}</div>
-                        <div class="summary-item"><span class="summary-label">Mikrofon:</span> ${formData.has_microphone}</div>
-                    </div>
-
-                    <div class="summary-section">
-                        <div class="summary-title">📲 Social Media</div>
-                        ${formData.instagram ? `<div class="summary-item"><span class="summary-label">Instagram:</span> ${formData.instagram}</div>` : ''}
-                        ${formData.tiktok ? `<div class="summary-item"><span class="summary-label">TikTok:</span> ${formData.tiktok}</div>` : ''}
-                        ${formData.twitter ? `<div class="summary-item"><span class="summary-label">Twitter:</span> ${formData.twitter}</div>` : ''}
-                        ${formData.youtube ? `<div class="summary-item"><span class="summary-label">YouTube:</span> ${formData.youtube}</div>` : ''}
-                        ${formData.other_platforms ? `<div class="summary-item"><span class="summary-label">Andere:</span> ${formData.other_platforms}</div>` : ''}
-                        <div class="summary-item"><span class="summary-label">Erfahrung:</span> ${formData.social_experience}</div>
-                        ${formData.geo_blocking ? `<div class="summary-item"><span class="summary-label">Geo-Blocking:</span> ${formData.geo_blocking}</div>` : ''}
-                    </div>
-                </div>
-            `;
-
-            // Check qualification
-            const qualificationHTML = checkQualification(formData);
-
-            document.getElementById('summaryContent').innerHTML = summaryHTML;
-            document.getElementById('qualificationCheck').innerHTML = qualificationHTML;
-
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('hidden');
-            });
-
-            // Show summary
-            document.getElementById('summarySection').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        function checkQualification(data) {
-            let qualifiedCount = 0;
-            const checks = [];
-
-            // Check hours per week (min 15)
-            if (parseInt(data.hours_per_week) >= 15) {
-                qualifiedCount++;
-                checks.push('✅ Min. 15-20 Std/Woche verfügbar');
-            } else {
-                checks.push('⚠️ Weniger als 15 Std/Woche');
-            }
-
-            // Check phone
-            if (data.phone_model && data.phone_model.trim() !== '') {
-                qualifiedCount++;
-                checks.push('✅ Smartphone vorhanden');
-            } else {
-                checks.push('⚠️ Kein Smartphone angegeben');
-            }
-
-            // Check equipment or willingness
-            if (data.has_ringlight !== 'no' || data.has_tripod !== 'no') {
-                qualifiedCount++;
-                checks.push('✅ Equipment vorhanden');
-            } else {
-                checks.push('⚠️ Kein Equipment vorhanden');
-            }
-
-            // Check social media
-            if (data.instagram || data.tiktok || data.twitter || data.youtube) {
-                qualifiedCount++;
-                checks.push('✅ Social Media Account vorhanden');
-            } else {
-                checks.push('⚠️ Keine Social Media Accounts');
-            }
-
-            // Check commitment
-            if (data.commitment_duration && !data.commitment_duration.includes('3-6months')) {
-                qualifiedCount++;
-                checks.push('✅ Langfristiges Commitment');
-            } else {
-                checks.push('⚠️ Kurzes Commitment');
-            }
-
-            const isQualified = qualifiedCount >= 4;
-            const badgeClass = isQualified ? 'qualified' : 'needs-review';
-            const badgeText = isQualified ? '✅ QUALIFIZIERT' : '⚠️ PRÜFUNG ERFORDERLICH';
-
-            return `
-                <div class="summary-card" style="margin-top: 20px;">
-                    <div class="summary-title">🎯 Qualifikations-Check</div>
-                    <div class="qualification-badge ${badgeClass}">${badgeText} (${qualifiedCount}/5)</div>
-                    <div style="margin-top: 15px;">
-                        ${checks.map(check => `<div style="margin: 5px 0; color: #4a5568;">${check}</div>`).join('')}
-                    </div>
-                </div>
-            `;
-        }
-
-        function editForm() {
-            document.getElementById('summarySection').classList.add('hidden');
-            document.querySelector('[data-section="1"]').classList.remove('hidden');
-            currentSection = 1;
-            updateProgress();
-            window.scrollTo(0, 0);
-        }
-
-        async function submitForm() {
-            try {
-                // Add timestamp
-                formData.timestamp = new Date().toISOString();
-
-                // Send to Google Sheets
-                await sendToGoogleSheets(formData);
-
-                // Show success screen
-                document.getElementById('summarySection').classList.add('hidden');
-                document.getElementById('successScreen').classList.remove('hidden');
-                window.scrollTo(0, 0);
-
-            } catch (error) {
-                console.error('Error:', error);
-                alert('⚠️ Es gab einen Fehler beim Absenden. Bitte versuche es erneut oder kontaktiere uns direkt per WhatsApp.');
-            }
-        }
-
-        async function sendToGoogleSheets(data) {
-            // HIER DEINE GOOGLE SHEETS WEB APP URL EINFÜGEN
-            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbqaIcu-l06cpd5D3yJlsvD-TsFA5XqlMiib2PKk-qvsHYWIhCwSrDKxeExmNNU0Zenw/exec';
-
-            // Uncomment when ready:
-          
-            const response = await fetch(GOOGLE_SHEETS_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-          
-
-            // For now, just log
-            console.log('Data to send:', data);
-            return Promise.resolve();
-        }
-
-        function copyToClipboard() {
-            let text = '=== CREATOR ONBOARDING - ZUSAMMENFASSUNG ===\n\n';
-            text += '👤 PERSÖNLICHE BASICS\n';
-            text += `Alter: ${formData.age}\n`;
-            text += `Land: ${formData.country}\n`;
-            text += `Nationalität: ${formData.nationality}\n`;
-            text += `Größe/Körperbau: ${formData.height_build}\n`;
-            if (formData.tattoos_piercings) text += `Tattoos/Piercings: ${formData.tattoos_piercings}\n`;
-            text += `Beziehungsstatus: ${formData.relationship_status}\n`;
-            text += `Wohnsituation: ${formData.living_situation}\n\n`;
-
-            text += '⏱️ VERFÜGBARKEIT & COMMITMENT\n';
-            text += `Stunden/Woche: ${formData.hours_per_week}\n`;
-            text += `Produktive Zeiten: ${formData.productive_times}\n`;
-            text += `Content-Tage: ${formData.content_days}\n`;
-            text += `Job: ${formData.has_job}${formData.job_hours ? ' (' + formData.job_hours + 'h/Woche)' : ''}\n`;
-            text += `Commitment: ${formData.commitment_duration}\n\n`;
-
-            text += '📱 TECHNISCHE AUSSTATTUNG\n';
-            text += `Handy: ${formData.phone_model}\n`;
-            text += `Ringlicht: ${formData.has_ringlight}${formData.ringlight_model ? ' (' + formData.ringlight_model + ')' : ''}\n`;
-            text += `Stativ: ${formData.has_tripod}${formData.tripod_model ? ' (' + formData.tripod_model + ')' : ''}\n`;
-            text += `Auto: ${formData.has_car}\n`;
-            text += `Mikrofon: ${formData.has_microphone}\n\n`;
-
-            text += '📲 SOCIAL MEDIA\n';
-            if (formData.instagram) text += `Instagram: ${formData.instagram}\n`;
-            if (formData.tiktok) text += `TikTok: ${formData.tiktok}\n`;
-            if (formData.twitter) text += `Twitter: ${formData.twitter}\n`;
-            if (formData.youtube) text += `YouTube: ${formData.youtube}\n`;
-            if (formData.other_platforms) text += `Andere: ${formData.other_platforms}\n`;
-            text += `Erfahrung: ${formData.social_experience}\n`;
-            if (formData.geo_blocking) text += `Geo-Blocking: ${formData.geo_blocking}\n`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                alert('✅ Zusammenfassung wurde in die Zwischenablage kopiert!');
-            }).catch(err => {
-                console.error('Copy failed:', err);
-                alert('⚠️ Kopieren fehlgeschlagen. Bitte manuell kopieren.');
-            });
-        }
-
-        // Initialize
+    function nextSection(current) {
+        if (!validateSection(current)) return;
+        saveFormData();
+        document.querySelector(`[data-section="${current}"]`).classList.add('hidden');
+        currentSection = current + 1;
+        document.querySelector(`[data-section="${currentSection}"]`).classList.remove('hidden');
         updateProgress();
-    </script>
+        window.scrollTo(0, 0);
+    }
+
+    function previousSection(current) {
+        saveFormData();
+        document.querySelector(`[data-section="${current}"]`).classList.add('hidden');
+        currentSection = current - 1;
+        document.querySelector(`[data-section="${currentSection}"]`).classList.remove('hidden');
+        updateProgress();
+        window.scrollTo(0, 0);
+    }
+
+    function v(val) { return val && String(val).trim() ? String(val) : 'N/A'; }
+    function arr(val) { return Array.isArray(val) && val.length ? val.join(', ') : 'N/A'; }
+
+    function showSummary() {
+        if (!validateSection(5)) return;
+        saveFormData();
+
+        const summaryHTML = `
+            <div class="summary-card">
+                <div class="summary-title">👤 Persönliche Infos</div>
+                <div class="summary-item"><span class="summary-label">Name:</span> ${v(formData.name)}</div>
+                <div class="summary-item"><span class="summary-label">Alter:</span> ${v(formData.age)}</div>
+                <div class="summary-item"><span class="summary-label">Größe/Körperbau:</span> ${v(formData.height)}</div>
+                <div class="summary-item"><span class="summary-label">Nationalität:</span> ${v(formData.nationality)}</div>
+                <div class="summary-item"><span class="summary-label">Land/Stadt:</span> ${v(formData.location)}</div>
+                ${formData.job ? `<div class="summary-item"><span class="summary-label">Job:</span> ${formData.job}</div>` : ''}
+                ${formData.hobbies ? `<div class="summary-item"><span class="summary-label">Hobbys:</span> ${formData.hobbies}</div>` : ''}
+                ${formData.talents ? `<div class="summary-item"><span class="summary-label">Talente:</span> ${formData.talents}</div>` : ''}
+            </div>
+            <div class="summary-card">
+                <div class="summary-title">🎯 Ziele & Verfügbarkeit</div>
+                <div class="summary-item"><span class="summary-label">Langfristiges Ziel:</span> ${v(formData.longterm_goal)}</div>
+                <div class="summary-item"><span class="summary-label">Einkommensziel:</span> ${v(formData.income_goal)}</div>
+                <div class="summary-item"><span class="summary-label">Stunden/Tag:</span> ${v(formData.hours_per_day)}</div>
+                <div class="summary-item"><span class="summary-label">Verfügbarkeit:</span> ${v(formData.availability)}</div>
+                <div class="summary-item"><span class="summary-label">No-Gos:</span> ${v(formData.no_gos)}</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-title">📱 Ausstattung & Setup</div>
+                <div class="summary-item"><span class="summary-label">Handy:</span> ${v(formData.phone_model)}</div>
+                <div class="summary-item"><span class="summary-label">Ausrüstung:</span> ${arr(formData.equipment_list)}</div>
+                <div class="summary-item"><span class="summary-label">Aufnahmeraum:</span> ${v(formData.quiet_space)}</div>
+                <div class="summary-item"><span class="summary-label">Outfits bereit:</span> ${v(formData.outfits)}</div>
+                ${formData.equipment_gdrive ? `<div class="summary-item"><span class="summary-label">Ausrüstungsfotos:</span> ${formData.equipment_gdrive}</div>` : ''}
+                ${formData.room_tour_gdrive ? `<div class="summary-item"><span class="summary-label">Zimmer-Tour:</span> ${formData.room_tour_gdrive}</div>` : ''}
+                ${formData.outfits_gdrive ? `<div class="summary-item"><span class="summary-label">Outfit-Fotos:</span> ${formData.outfits_gdrive}</div>` : ''}
+            </div>
+            <div class="summary-card">
+                <div class="summary-title">📲 Social Media</div>
+                <div class="summary-item"><span class="summary-label">Plattformen:</span> ${arr(formData.platforms)}</div>
+                ${formData.social_links ? `<div class="summary-item"><span class="summary-label">Links:</span> ${formData.social_links}</div>` : ''}
+                <div class="summary-item"><span class="summary-label">Hat OnlyFans:</span> ${v(formData.has_onlyfans)}</div>
+                ${formData.onlyfans_link ? `<div class="summary-item"><span class="summary-label">OF Link:</span> ${formData.onlyfans_link}</div>` : ''}
+                <div class="summary-item"><span class="summary-label">Besteh. Content:</span> ${v(formData.existing_content)}</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-title">ℹ️ Zusätzliche Infos</div>
+                <div class="summary-item"><span class="summary-label">Agentur vorher:</span> ${v(formData.agency_before)}</div>
+                ${formData.agency_experience ? `<div class="summary-item"><span class="summary-label">Agentur-Erfahrung:</span> ${formData.agency_experience}</div>` : ''}
+                ${formData.anything_else ? `<div class="summary-item"><span class="summary-label">Sonstiges:</span> ${formData.anything_else}</div>` : ''}
+            </div>
+        `;
+
+        const qualHTML = checkQualification(formData);
+        document.getElementById('summaryContent').innerHTML = summaryHTML;
+        document.getElementById('qualificationCheck').innerHTML = qualHTML;
+        document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+        document.getElementById('summarySection').classList.remove('hidden');
+        window.scrollTo(0, 0);
+    }
+
+    function checkQualification(data) {
+        let count = 0;
+        const checks = [];
+
+        if (parseInt(data.hours_per_day) >= 2) { count++; checks.push('✅ Mind. 2 Std/Tag verfügbar'); }
+        else checks.push('⚠️ Weniger als 2 Std/Tag');
+
+        if (data.phone_model && data.phone_model.trim()) { count++; checks.push('✅ Smartphone vorhanden'); }
+        else checks.push('⚠️ Kein Smartphone angegeben');
+
+        if (data.equipment_list && data.equipment_list.length > 0) { count++; checks.push('✅ Equipment vorhanden'); }
+        else checks.push('⚠️ Kein Equipment vorhanden');
+
+        if (data.platforms && data.platforms.length > 0) { count++; checks.push('✅ Social-Media-Account vorhanden'); }
+        else checks.push('⚠️ Keine Social-Media-Accounts');
+
+        if (data.no_gos && data.no_gos.trim()) { count++; checks.push('✅ No-Gos definiert'); }
+        else checks.push('⚠️ No-Gos nicht angegeben');
+
+        const isQualified = count >= 4;
+        const badgeClass = isQualified ? 'qualified' : 'needs-review';
+        const badgeText = isQualified ? '✅ QUALIFIZIERT' : '⚠️ PRÜFUNG ERFORDERLICH';
+        return `
+            <div class="summary-card" style="margin-top:20px;">
+                <div class="summary-title">🎯 Qualifikations-Check</div>
+                <div class="qualification-badge ${badgeClass}">${badgeText} (${count}/5)</div>
+                <div style="margin-top:15px;">${checks.map(c => `<div style="margin:5px 0;color:#4a5568;">${c}</div>`).join('')}</div>
+            </div>`;
+    }
+
+    function editForm() {
+        document.getElementById('summarySection').classList.add('hidden');
+        document.querySelector('[data-section="1"]').classList.remove('hidden');
+        currentSection = 1;
+        updateProgress();
+        window.scrollTo(0, 0);
+    }
+
+    async function submitForm() {
+        try {
+            formData.timestamp = new Date().toISOString();
+            formData.lang = 'de';
+            await sendToGoogleSheets(formData);
+            document.getElementById('summarySection').classList.add('hidden');
+            document.getElementById('successScreen').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        } catch (error) {
+            console.error('Error:', error);
+            alert('⚠️ Es gab einen Fehler beim Absenden. Bitte versuche es erneut oder kontaktiere uns direkt per WhatsApp.');
+        }
+    }
+
+    async function sendToGoogleSheets(data) {
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbqaIcu-l06cpd5D3yJlsvD-TsFA5XqlMiib2PKk-qvsHYWIhCwSrDKxeExmNNU0Zenw/exec';
+        await fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+    }
+
+    function copyToClipboard() {
+        const line = '━━━━━━━━━━━━━━━━━━';
+        let text = '🚀 CREATOR ONBOARDING — ZUSAMMENFASSUNG\n\n';
+        text += line + '\n👤 PERSÖNLICHE INFOS\n' + line + '\n';
+        text += `Name: ${v(formData.name)}\nAlter: ${v(formData.age)}\nGröße/Körperbau: ${v(formData.height)}\nNationalität: ${v(formData.nationality)}\nLand/Stadt: ${v(formData.location)}\n`;
+        if (formData.job) text += `Job: ${formData.job}\n`;
+        if (formData.hobbies) text += `Hobbys: ${formData.hobbies}\n`;
+        if (formData.talents) text += `Talente: ${formData.talents}\n`;
+        text += '\n' + line + '\n🎯 ZIELE & VERFÜGBARKEIT\n' + line + '\n';
+        text += `Ziel: ${v(formData.longterm_goal)}\nEinkommensziel: ${v(formData.income_goal)}\nStunden/Tag: ${v(formData.hours_per_day)}\nVerfügbarkeit: ${v(formData.availability)}\nNo-Gos: ${v(formData.no_gos)}\n`;
+        text += '\n' + line + '\n📱 AUSSTATTUNG\n' + line + '\n';
+        text += `Handy: ${v(formData.phone_model)}\nAusrüstung: ${arr(formData.equipment_list)}\nAufnahmeraum: ${v(formData.quiet_space)}\nOutfits: ${v(formData.outfits)}\n`;
+        if (formData.equipment_gdrive) text += `Ausrüstungsfotos: ${formData.equipment_gdrive}\n`;
+        if (formData.room_tour_gdrive) text += `Zimmer-Tour: ${formData.room_tour_gdrive}\n`;
+        if (formData.outfits_gdrive) text += `Outfit-Fotos: ${formData.outfits_gdrive}\n`;
+        text += '\n' + line + '\n📲 SOCIAL MEDIA\n' + line + '\n';
+        text += `Plattformen: ${arr(formData.platforms)}\n`;
+        if (formData.social_links) text += `Links: ${formData.social_links}\n`;
+        text += `Hat OnlyFans: ${v(formData.has_onlyfans)}\n`;
+        if (formData.onlyfans_link) text += `OF Link: ${formData.onlyfans_link}\n`;
+        text += `Besteh. Content: ${v(formData.existing_content)}\n`;
+        text += '\n' + line + '\nℹ️ ZUSÄTZLICHE INFOS\n' + line + '\n';
+        text += `Agentur vorher: ${v(formData.agency_before)}\n`;
+        if (formData.agency_experience) text += `Agentur-Erfahrung: ${formData.agency_experience}\n`;
+        if (formData.anything_else) text += `Sonstiges: ${formData.anything_else}\n`;
+
+        navigator.clipboard.writeText(text)
+            .then(() => alert('✅ Zusammenfassung wurde in die Zwischenablage kopiert!'))
+            .catch(() => alert('⚠️ Kopieren fehlgeschlagen. Bitte manuell kopieren.'));
+    }
+
+    updateProgress();
+</script>
 </body>
 </html>

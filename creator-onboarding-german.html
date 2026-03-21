@@ -190,11 +190,7 @@
                         <div class="pill" data-val="Keines" onclick="togglePill(this,'equipment_list')"><span class="pill-box"></span>Keines</div>
                     </div>
                 </div>
-                <div class="field">
-                    <label>Equipment-Fotos (Google Drive Link)</label>
-                    <div class="hint">📲 Schick Fotos von jedem Gerät per Google Drive oder WhatsApp</div>
-                    <input type="text" id="equipment_gdrive" placeholder="Google Drive Link einfügen">
-                </div>
+
                 <div class="field">
                     <label>Hast du einen ruhigen, gut beleuchteten Raum? <span class="req">*</span></label>
                     <select id="quiet_space">
@@ -202,11 +198,7 @@
                         <option>Ja</option><option>Teilweise</option><option>Nein</option>
                     </select>
                 </div>
-                <div class="field">
-                    <label>Room Tour / Shooting Location (Google Drive Link)</label>
-                    <div class="hint">📲 Schick ein Room-Tour-Video oder Fotos per Google Drive oder WhatsApp</div>
-                    <input type="text" id="room_tour_gdrive" placeholder="Google Drive Link einfügen">
-                </div>
+
                 <div class="field">
                     <label>Hast du verschiedene Outfits bereit? <span class="req">*</span></label>
                     <select id="outfits">
@@ -214,11 +206,7 @@
                         <option>Ja, viele</option><option>Ja, einige</option><option>Noch nicht</option>
                     </select>
                 </div>
-                <div class="field">
-                    <label>Outfit-Fotos (Google Drive Link)</label>
-                    <div class="hint">📲 Schick Outfit-Fotos/Videos per Google Drive oder WhatsApp</div>
-                    <input type="text" id="outfits_gdrive" placeholder="Google Drive Link einfügen">
-                </div>
+
             </div>
             <div class="btn-row">
                 <button class="btn-secondary" onclick="goTo(3,2)">← Zurück</button>
@@ -242,7 +230,7 @@
                         <div class="pill" data-val="Andere" onclick="togglePill(this,'platforms')"><span class="pill-box"></span>Andere</div>
                     </div>
                 </div>
-                <div class="field"><label>Links zu allen relevanten Social-Media-Accounts</label><textarea id="social_links" placeholder="z.B. instagram.com/username, tiktok.com/@username"></textarea></div>
+
                 <div class="field">
                     <label>Hast du bereits einen OnlyFans-Account? <span class="req">*</span></label>
                     <select id="has_onlyfans" onchange="toggleConditional('has_onlyfans',['Ja'],'onlyfans_link_field')">

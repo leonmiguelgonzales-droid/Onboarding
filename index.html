@@ -3,244 +3,774 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creator Onboarding - Select Language</title>
+    <title>Creator Onboarding - Perlage Studios</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image:
+                linear-gradient(135deg, rgba(102,126,234,0.7) 0%, rgba(118,75,162,0.7) 100%),
+                url('https://i.imgur.com/Q3gfUqC.jpeg');
+            background-size: cover, 50%;
+            background-position: center, center;
+            background-repeat: no-repeat, no-repeat;
+            background-attachment: fixed;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
         }
-
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 60px 40px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
+            max-width: 720px; margin: 0 auto; background: white;
+            background-image: url('https://i.imgur.com/Q3gfUqC.jpeg');
+            background-size: 40%; background-position: center center; background-repeat: no-repeat;
+            border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; position: relative;
         }
+        .container::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.92); pointer-events:none; z-index:0; }
+        .container > * { position:relative; z-index:1; }
+        .header { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; padding:36px 40px; text-align:center; }
+        .header h1 { font-size:1.9em; margin-bottom:8px; font-weight:700; }
+        .header p { opacity:0.9; font-size:1.05em; }
 
-        .logo {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: bounce 2s ease-in-out infinite;
+        /* Language selector bar */
+        .lang-bar { display:flex; justify-content:center; gap:8px; padding:16px 24px; background:rgba(102,126,234,0.04); border-bottom:1px solid rgba(102,126,234,0.1); flex-wrap:wrap; }
+        .lang-btn { padding:7px 16px; border-radius:20px; border:2px solid rgba(102,126,234,0.25); background:white; color:#667eea; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+        .lang-btn.active { background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-color:transparent; }
+        .lang-btn:hover:not(.active) { border-color:#667eea; background:rgba(102,126,234,0.06); }
+
+        .content { padding:36px 40px; }
+        .progress-wrap { margin-bottom:28px; }
+        .progress-bar { width:100%; height:6px; background:#e2e8f0; border-radius:10px; overflow:hidden; margin-bottom:8px; }
+        .progress-fill { height:100%; background:linear-gradient(90deg,#667eea,#764ba2); width:16.6%; transition:width 0.4s ease; border-radius:10px; }
+        .progress-text { text-align:center; color:#667eea; font-weight:600; font-size:12px; }
+        .section-card { background:#fff; border:1px solid rgba(102,126,234,0.12); border-radius:14px; padding:24px; box-shadow:0 2px 8px rgba(102,126,234,0.05); margin-bottom:20px; }
+        .section-header { background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:8px; padding:12px 16px; margin-bottom:24px; font-size:15px; font-weight:600; }
+        .section-hint { background:rgba(102,126,234,0.06); border-left:3px solid #667eea; border-radius:0 8px 8px 0; padding:10px 14px; margin-bottom:20px; font-size:13px; color:#667eea; font-style:italic; }
+        .field { margin-bottom:22px; }
+        .field label { display:block; font-weight:600; color:#2d3748; font-size:14px; margin-bottom:8px; }
+        .req { color:#e53e3e; }
+        input[type="text"], input[type="number"], textarea, select {
+            width:100%; padding:11px 14px; border:2px solid #e2e8f0; border-radius:8px;
+            font-size:14px; color:#2d3748; background:#fff; outline:none;
+            font-family:inherit; transition:border-color 0.2s; box-sizing:border-box;
         }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            color: #667eea;
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        p {
-            color: #4a5568;
-            font-size: 1.1em;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .language-selector {
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 12px;
-            font-size: 1.1em;
-        }
-
+        input:focus, textarea:focus, select:focus { border-color:#667eea; box-shadow:0 0 0 3px rgba(102,126,234,0.1); }
+        textarea { min-height:90px; resize:vertical; }
         select {
-            width: 100%;
-            padding: 16px 20px;
-            font-size: 1.1em;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            background: white;
-            color: #2d3748;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            background-size: 24px;
-            padding-right: 50px;
+            cursor:pointer; appearance:none;
+            background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667eea' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat:no-repeat; background-position:right 12px center; background-size:18px; padding-right:38px;
         }
-
-        select:hover {
-            border-color: #667eea;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        button {
-            width: 100%;
-            padding: 18px;
-            font-size: 1.2em;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .flag {
-            font-size: 1.5em;
-            margin-right: 8px;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 40px 30px;
-            }
-
-            h1 {
-                font-size: 1.8em;
-            }
-
-            .logo {
-                font-size: 3em;
-            }
-        }
+        .pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+        .pill { display:flex; align-items:center; gap:7px; padding:8px 14px; border-radius:8px; border:2px solid #e2e8f0; background:#fff; cursor:pointer; font-size:13px; color:#4a5568; font-weight:400; user-select:none; transition:all 0.15s; font-family:inherit; }
+        .pill.checked { border-color:#667eea; background:rgba(102,126,234,0.08); color:#667eea; font-weight:600; }
+        .pill-box { width:16px; height:16px; border-radius:4px; border:2px solid #cbd5e0; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.15s; }
+        .pill.checked .pill-box { border-color:#667eea; background:#667eea; }
+        .checkmark { display:none; }
+        .pill.checked .checkmark { display:block; }
+        .hidden { display:none !important; }
+        .btn-row { display:flex; gap:10px; margin-top:4px; }
+        .btn-primary { flex:1; padding:13px 20px; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+        .btn-primary:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(102,126,234,0.4); }
+        .btn-secondary { padding:13px 20px; background:rgba(0,0,0,0.04); color:#718096; border:1px solid rgba(0,0,0,0.1); border-radius:8px; font-size:14px; cursor:pointer; font-family:inherit; }
+        .btn-outline { padding:13px 20px; background:white; color:#667eea; border:1px solid rgba(102,126,234,0.3); border-radius:8px; font-size:14px; cursor:pointer; font-family:inherit; }
+        .summary-block { background:#fff; border:1px solid rgba(102,126,234,0.12); border-radius:14px; padding:20px 24px; margin-bottom:14px; box-shadow:0 2px 8px rgba(102,126,234,0.05); }
+        .summary-block h3 { color:#667eea; font-size:16px; margin-bottom:14px; font-weight:700; }
+        .summary-row { display:flex; gap:12px; padding:7px 0; border-bottom:1px solid rgba(102,126,234,0.06); font-size:14px; }
+        .summary-row:last-child { border-bottom:none; }
+        .summary-label { color:#9b8fc4; font-weight:600; min-width:180px; flex-shrink:0; font-size:13px; }
+        .summary-val { color:#2d3748; }
+        .success { text-align:center; padding:40px 24px; }
+        .success .icon { font-size:52px; margin-bottom:16px; }
+        .success h2 { color:#667eea; font-size:1.8em; margin-bottom:12px; }
+        .success p { color:#4a5568; font-size:15px; line-height:1.8; margin-bottom:16px; }
+        .lang-splash-btn { width:100%; padding:14px 20px; background:white; color:#667eea; border:2px solid rgba(102,126,234,0.3); border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+        .lang-splash-btn:hover { background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-color:transparent; transform:translateY(-1px); box-shadow:0 8px 20px rgba(102,126,234,0.3); }
+        @media (max-width:600px) { .content{padding:24px 20px;} .header{padding:28px 20px;} .header h1{font-size:1.5em;} .btn-row{flex-direction:column;} .summary-label{min-width:110px;} }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">🚀</div>
-        <h1 data-translate="title">Creator Onboarding</h1>
-        <p data-translate="subtitle">Welcome! Please select your preferred language to get started.</p>
-
-        <div class="language-selector">
-            <label for="language" data-translate="selectLabel">Select Language</label>
-            <select id="language">
-                <option value="">-- <span data-translate="pleaseSelect">Please select</span> --</option>
-                <option value="en">🇬🇧 English</option>
-                <option value="de">🇩🇪 Deutsch (German)</option>
-            </select>
-        </div>
-
-        <button id="continueBtn" disabled onclick="goToForm()">
-            <span data-translate="continueBtn">Continue</span> →
-        </button>
+<div class="container">
+    <div class="header">
+        <h1>Perlage Creator Onboarding</h1>
+        <p id="headerSub">Please answer all questions carefully!</p>
     </div>
 
-    <script>
-        const translations = {
-            en: {
-                title: "Creator Onboarding",
-                subtitle: "Welcome! Please select your preferred language to get started.",
-                selectLabel: "Select Language",
-                pleaseSelect: "Please select",
-                continueBtn: "Continue"
-            },
-            de: {
-                title: "Creator Onboarding",
-                subtitle: "Willkommen! Bitte wähle deine bevorzugte Sprache, um zu beginnen.",
-                selectLabel: "Sprache wählen",
-                pleaseSelect: "Bitte wählen",
-                continueBtn: "Weiter"
-            }
-        };
+    <!-- Language splash screen -->
+    <div id="langSplash" style="padding:48px 40px;text-align:center;">
+        <div style="max-width:280px;margin:0 auto;">
+            <select id="langDropdown" onchange="if(this.value) chooseLang(this.value)">
+                <option value="">Select language</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+            </select>
+        </div>
+    </div>
 
-        const languageSelect = document.getElementById('language');
-        const continueBtn = document.getElementById('continueBtn');
 
-        // Detect browser language and set default
-        function detectLanguage() {
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.startsWith('de')) {
-                languageSelect.value = 'de';
-                updatePageLanguage('de');
-                continueBtn.disabled = false;
-            }
-        }
 
-        // Update all text on the page based on selected language
-        function updatePageLanguage(lang) {
-            const translation = translations[lang];
-            if (!translation) return;
+    <div class="content hidden" id="formContent">
+        <div style="text-align:right;margin-bottom:4px;">
+            <button onclick="backToLang()" style="background:none;border:none;color:#9b8fc4;font-size:12px;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0;" id="changeLangBtn"></button>
+        </div>
+        <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="progress-text" id="progressText"></div>
+        </div>
 
-            // Update all elements with data-translate attribute
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                if (translation[key]) {
-                    element.textContent = translation[key];
-                }
-            });
+        <!-- Section 1 -->
+        <div id="sec1">
+            <div class="section-card">
+                <div class="section-header" id="s1header"></div>
+                <div class="field"><label id="q1"></label><input type="text" id="name"></div>
+                <div class="field"><label id="q2"></label><input type="number" id="age" min="18" max="99"></div>
+                <div class="field"><label id="q3"></label><input type="text" id="height"></div>
+                <div class="field"><label id="q4"></label><input type="text" id="nationality"></div>
+                <div class="field"><label id="q5"></label><input type="text" id="location"></div>
+                <div class="field"><label id="q6"></label><input type="text" id="job"></div>
+            </div>
+            <div class="btn-row"><button class="btn-primary" id="btn1next" onclick="goTo(1,2)"></button></div>
+        </div>
 
-            // Update HTML lang attribute
-            document.documentElement.lang = lang;
-        }
+        <!-- Section 2 -->
+        <div id="sec2" class="hidden">
+            <div class="section-card">
+                <div class="section-header" id="s2header"></div>
+                <div class="field"><label id="q7"></label><textarea id="longterm_goal"></textarea></div>
+                <div class="field"><label id="q8"></label><input type="text" id="income_goal"></div>
+                <div class="field">
+                    <label id="q9"></label>
+                    <select id="hours_per_day"><option value="" id="sel_please"></option></select>
+                </div>
+                <div class="field">
+                    <label id="q10"></label>
+                    <select id="availability"><option value="" id="sel_please2"></option></select>
+                </div>
+                <div class="field"><label id="q11"></label><textarea id="no_gos"></textarea></div>
+            </div>
+            <div class="btn-row">
+                <button class="btn-secondary" id="btn2back" onclick="goTo(2,1)"></button>
+                <button class="btn-primary" id="btn2next" onclick="goTo(2,3)"></button>
+            </div>
+        </div>
 
-        // Enable button when language is selected
-        languageSelect.addEventListener('change', function() {
-            if (this.value) {
-                continueBtn.disabled = false;
-                updatePageLanguage(this.value);
-            } else {
-                continueBtn.disabled = true;
-            }
+        <!-- Section 3 -->
+        <div id="sec3" class="hidden">
+            <div class="section-card">
+                <div class="section-header" id="s3header"></div>
+                <div class="section-hint" id="s3hint"></div>
+                <div class="field"><label id="q12"></label><textarea id="hobbies"></textarea></div>
+                <div class="field"><label id="q13"></label><textarea id="talents"></textarea></div>
+                <div class="field"><label id="q14"></label><input type="text" id="pets"></div>
+                <div class="field"><label id="q15"></label><textarea id="locations"></textarea></div>
+                <div class="field"><label id="q16"></label><textarea id="special_items"></textarea></div>
+            </div>
+            <div class="btn-row">
+                <button class="btn-secondary" id="btn3back" onclick="goTo(3,2)"></button>
+                <button class="btn-primary" id="btn3next" onclick="goTo(3,4)"></button>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div id="sec4" class="hidden">
+            <div class="section-card">
+                <div class="section-header" id="s4header"></div>
+                <div class="field"><label id="q17"></label><input type="text" id="phone_model"></div>
+                <div class="field">
+                    <label id="q18"></label>
+                    <div class="pills" id="equipment_list"></div>
+                </div>
+                <div class="field">
+                    <label id="q_quiet"><span id="ql_quiet"></span> <span class="req">*</span></label>
+                    <select id="quiet_space"><option value="" id="sel_please3"></option></select>
+                </div>
+                <div class="field">
+                    <label id="q_outfits"><span id="ql_outfits"></span> <span class="req">*</span></label>
+                    <select id="outfits"><option value="" id="sel_please4"></option></select>
+                </div>
+            </div>
+            <div class="btn-row">
+                <button class="btn-secondary" id="btn4back" onclick="goTo(4,3)"></button>
+                <button class="btn-primary" id="btn4next" onclick="goTo(4,5)"></button>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div id="sec5" class="hidden">
+            <div class="section-card">
+                <div class="section-header" id="s5header"></div>
+                <div class="field">
+                    <label id="q19"></label>
+                    <div class="pills" id="platforms"></div>
+                </div>
+
+                <div class="field">
+                    <label id="q22"></label>
+                    <select id="existing_content"><option value="" id="sel_please6"></option></select>
+                </div>
+            </div>
+            <div class="btn-row">
+                <button class="btn-secondary" id="btn5back" onclick="goTo(5,4)"></button>
+                <button class="btn-primary" id="btn5next" onclick="goTo(5,6)"></button>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div id="sec6" class="hidden">
+            <div class="section-card">
+                <div class="section-header" id="s6header"></div>
+                <div class="field">
+                    <label id="q23"></label>
+                    <select id="agency_before" onchange="toggleAgency()"><option value="" id="sel_please7"></option></select>
+                </div>
+                <div class="field hidden" id="agency_exp_field">
+                    <label id="q23b"></label>
+                    <textarea id="agency_experience"></textarea>
+                </div>
+                <div class="field"><label id="q24"></label><textarea id="anything_else"></textarea></div>
+            </div>
+            <div class="btn-row">
+                <button class="btn-secondary" id="btn6back" onclick="goTo(6,5)"></button>
+                <button class="btn-primary" id="btn6next" onclick="showSummary()"></button>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div id="secSummary" class="hidden">
+            <h2 style="color:#2d3748;font-size:22px;margin-bottom:20px;" id="summaryTitle"></h2>
+            <div id="summaryContent"></div>
+            <div class="btn-row" style="flex-wrap:wrap;">
+                <button class="btn-secondary" id="btnEdit" onclick="editForm()"></button>
+                <button class="btn-outline" id="btnCopy" onclick="copyClipboard()">📋</button>
+                <button class="btn-primary" id="btnSubmit" onclick="submitForm()"></button>
+            </div>
+        </div>
+
+        <!-- Success -->
+        <div id="secSuccess" class="hidden">
+            <div class="success">
+                <div class="icon">🎉</div>
+                <h2 id="successTitle"></h2>
+                <p id="successMsg"></p>
+                <div class="btn-row" style="justify-content:center;flex-wrap:wrap;">
+                    <button class="btn-outline" id="btnCopy2" onclick="copyClipboard()"></button>
+                    <button class="btn-secondary" id="btnAnother" onclick="location.reload()"></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbqaIcu-l06cpd5D3yJlsvD-TsFA5XqlMiib2PKk-qvsHYWIhCwSrDKxeExmNNU0Zenw/exec';
+
+// ── TRANSLATIONS ──────────────────────────────────────────────────────────────
+const T = {
+    en: {
+        headerSub: "Please answer all questions carefully — this helps us create the best strategy for you!",
+        progress: (c,t) => `Section ${c} of ${t}`,
+        s1: "1️⃣ Personal Information",
+        s2: "2️⃣ Goals & Availability",
+        s3: "3️⃣ What Makes You Unique?",
+        s3hint: "Think about everything that's special about you — no matter how small it seems!",
+        s4: "4️⃣ Equipment & Content Style",
+        s5: "5️⃣ Social Media & Content",
+        s6: "6️⃣ Additional Info",
+        q1:  "1. What is your name / stage name? *",
+        q2:  "2. How old are you? *",
+        q3:  "3. What is your height? *",
+        q4:  "4. What is your nationality? *",
+        q5:  "5. Where do you currently live? (Country / City) *",
+        q6:  "6. What is your current job / occupation?",
+        q7:  "7. What is your long-term goal for OnlyFans? *",
+        q8:  "8. What monthly income would you like to reach? (realistic & dream goal) *",
+        q9:  "9. How many hours per day can you dedicate to OF? *",
+        q10: "10. What is your daily schedule like? When are you most available? *",
+        q11: "11. What are your absolute No-Gos on OF and Social Media? *",
+        q12: "12. What are your hobbies, interests, or passions?",
+        q13: "13. Do you have any special talents or skills for content? (dancing, cooking, accent, humor…)",
+        q14: "14. Do you have any pets? If yes, which ones? 🐾",
+        q15: "15. Do you have access to special locations? (pool, beach, gym, nature spots…)",
+        q16: "16. Do you have any special items, gadgets or accessories that could stand out? (motorcycle, sports car, instrument…)",
+        q17: "17. What phone do you currently use? (model & camera quality) *",
+        q18: "18. Do you have any additional equipment?",
+        q_quiet: "Do you have a quiet, well-lit space for content?",
+        q_outfits: "Do you have different outfits ready?",
+        q19: "19. Which platforms are you currently active on that we can use for OF? (no private accounts)",
+        q20: "20. Please send the links to all relevant social media accounts (IG, TikTok, Twitter, Reddit, etc.)",
+        q21: "21. Do you already have an OnlyFans account? If yes, link please! *",
+        q21b: "OnlyFans account link",
+        q22: "22. Do you have any existing content we can use? (photos, videos, reels) *",
+        q23: "23. Have you worked with an agency before? If yes, what was your experience? *",
+        q23b: "What was your experience with the agency?",
+        q24: "24. Is there anything else important we should know about you?",
+        please: "-- Please select --",
+        hours: ["1–2 hours","3–4 hours","5–6 hours","7–8 hours","8+ hours"],
+        avail: ["Morning (6–12)","Afternoon (12–18)","Evening (18–24)","Night (0–6)","Flexible"],
+        equipment: ["Ring light","Tripod","Camera","Microphone","Softbox","None"],
+        quiet: ["Yes","Somewhat","No"],
+        outfits: ["Yes, many","Yes, a few","Not yet"],
+        platforms: ["Instagram","TikTok","Twitter/X","Reddit","YouTube","Snapchat","Other"],
+        yesno: ["Yes","No"],
+        existing: ["Yes, photos & videos","Yes, photos only","Yes, videos only","No"],
+        of_yes: "Yes", of_no: "No",
+        agency_yes: "Yes", agency_no: "No",
+        next: "Next →", back: "← Back", review: "Review Summary →",
+        summaryTitle: "📋 Summary",
+        edit: "✏️ Edit", copy: "📋 Copy", submit: "✅ Submit",
+        successTitle: "Successfully Submitted!",
+        successMsg: "Thank you! We'll review your info and get back to you via WhatsApp within 24–48 hours.",
+        copySum: "📋 Copy Summary", another: "Submit another response",
+        alertRequired: "⚠️ Please fill in all required fields (marked with *)",
+        alertCopied: "✅ Copied to clipboard!",
+        alertCopyFail: "⚠️ Copy failed.",
+        alertSubmitFail: "⚠️ Submit failed. Please try again or contact us via WhatsApp.",
+        labels: { name:"Name / Stage name", age:"Age", height:"Height", nationality:"Nationality", location:"Country / City", job:"Job / occupation", longterm_goal:"Long-term goal", income_goal:"Income goal", hours_per_day:"Hours/day", availability:"Availability", no_gos:"No-Gos", hobbies:"Hobbies", talents:"Talents", pets:"Pets", locations:"Special locations", special_items:"Special items", phone_model:"Phone model", equipment_list:"Equipment", quiet_space:"Quiet space", outfits:"Outfits ready", platforms:"Platforms", social_links:"Social links", has_onlyfans:"Has OnlyFans", onlyfans_link:"OnlyFans link", existing_content:"Existing content", agency_before:"Agency before", agency_experience:"Agency experience", anything_else:"Anything else" },
+        sectionTitles: ["1️⃣ Personal Information","2️⃣ Goals & Availability","3️⃣ What Makes You Unique?","4️⃣ Equipment & Content Style","5️⃣ Social Media & Content","6️⃣ Additional Info"],
+        ph_name:"E.g. Sofia Rose", ph_height:"E.g. 165 cm", ph_nationality:"E.g. English", ph_location:"E.g. UK, London", ph_job:"E.g. Student, Waitress", ph_goal:"E.g. financial freedom, full-time creator...", ph_income:"E.g. $2,000 realistic / $10,000 dream", ph_nogos:"E.g. no face, no specific acts...", ph_hobbies:"E.g. fitness, cooking, travel...", ph_talents:"Anything counts!", ph_pets:"E.g. golden retriever, two cats...", ph_locations:"E.g. rooftop, private pool...", ph_special:"E.g. vintage motorcycle, piano...", ph_phone:"E.g. iPhone 14 Pro", ph_social:"E.g. instagram.com/username", ph_of:"onlyfans.com/yourname", ph_agency:"Tell us about your experience...", ph_else:"Feel free to share anything relevant..."
+    },
+    de: {
+        headerSub: "Bitte beantworte alle Fragen sorgfältig — das hilft uns, die beste Strategie für dich zu entwickeln!",
+        progress: (c,t) => `Abschnitt ${c} von ${t}`,
+        s1: "1️⃣ Persönliche Informationen",
+        s2: "2️⃣ Ziele & Verfügbarkeit",
+        s3: "3️⃣ Was macht dich einzigartig?",
+        s3hint: "Denk an alles was besonders an dir ist — egal wie klein es scheint!",
+        s4: "4️⃣ Equipment & Content-Stil",
+        s5: "5️⃣ Social Media & Content",
+        s6: "6️⃣ Weitere Infos",
+        q1:  "1. Wie ist dein Name / Künstlername? *",
+        q2:  "2. Wie alt bist du? *",
+        q3:  "3. Wie groß bist du? *",
+        q4:  "4. Was ist deine Nationalität? *",
+        q5:  "5. Wo wohnst du aktuell? (Land / Stadt) *",
+        q6:  "6. Was ist dein aktueller Job / Beschäftigung?",
+        q7:  "7. Was ist dein langfristiges Ziel mit OnlyFans? *",
+        q8:  "8. Welches monatliche Einkommen möchtest du erreichen? (realistisch & Traumziel) *",
+        q9:  "9. Wie viele Stunden pro Tag kannst du für OF aufwenden? *",
+        q10: "10. Wie sieht dein Tagesablauf aus? Wann bist du am besten verfügbar? *",
+        q11: "11. Was sind deine absoluten No-Gos auf OF und Social Media? *",
+        q12: "12. Was sind deine Hobbys, Interessen oder Leidenschaften?",
+        q13: "13. Hast du besondere Talente oder Fähigkeiten für Content? (Tanzen, Kochen, Akzent, Humor…)",
+        q14: "14. Hast du Haustiere? Wenn ja, welche? 🐾",
+        q15: "15. Hast du Zugang zu besonderen Locations? (Pool, Strand, Gym, Natur-Spots…)",
+        q16: "16. Hast du besondere Gegenstände, Gadgets oder Accessoires die auffallen könnten? (Motorrad, Sportwagen, Instrument…)",
+        q17: "17. Welches Handy nutzt du? (Modell & Kameraqualität) *",
+        q18: "18. Hast du weiteres Equipment?",
+        q_quiet: "Hast du einen ruhigen, gut beleuchteten Raum?",
+        q_outfits: "Hast du verschiedene Outfits bereit?",
+        q19: "19. Auf welchen Plattformen bist du aktiv die wir für OF nutzen können? (keine privaten Accounts)",
+        q20: "20. Bitte schick die Links zu allen relevanten Social-Media-Accounts (IG, TikTok, Twitter, Reddit, etc.)",
+        q21: "21. Hast du bereits einen OnlyFans-Account? Wenn ja, Link bitte! *",
+        q21b: "OnlyFans Account Link",
+        q22: "22. Hast du bestehenden Content den wir nutzen können? (Fotos, Videos, Reels) *",
+        q23: "23. Hast du schon mit einer Agentur zusammengearbeitet? Wenn ja, wie war die Erfahrung? *",
+        q23b: "Wie war deine Erfahrung mit der Agentur?",
+        q24: "24. Gibt es sonst noch etwas Wichtiges das wir über dich wissen sollten?",
+        please: "-- Bitte wählen --",
+        hours: ["1–2 Stunden","3–4 Stunden","5–6 Stunden","7–8 Stunden","8+ Stunden"],
+        avail: ["Morgens (6–12)","Nachmittags (12–18)","Abends (18–24)","Nachts (0–6)","Flexibel"],
+        equipment: ["Ringlicht","Stativ","Kamera","Mikrofon","Softbox","Keines"],
+        quiet: ["Ja","Teilweise","Nein"],
+        outfits: ["Ja, viele","Ja, einige","Noch nicht"],
+        platforms: ["Instagram","TikTok","Twitter/X","Reddit","YouTube","Snapchat","Andere"],
+        yesno: ["Ja","Nein"],
+        existing: ["Ja, Fotos & Videos","Ja, nur Fotos","Ja, nur Videos","Nein"],
+        of_yes: "Ja", of_no: "Nein",
+        agency_yes: "Ja", agency_no: "Nein",
+        next: "Weiter →", back: "← Zurück", review: "Zusammenfassung ansehen →",
+        summaryTitle: "📋 Zusammenfassung",
+        edit: "✏️ Bearbeiten", copy: "📋 Kopieren", submit: "✅ Absenden",
+        successTitle: "Erfolgreich abgesendet!",
+        successMsg: "Danke! Wir melden uns innerhalb von 24–48 Stunden per WhatsApp bei dir.",
+        copySum: "📋 Zusammenfassung kopieren", another: "Weitere Antwort absenden",
+        alertRequired: "⚠️ Bitte alle Pflichtfelder (*) ausfüllen!",
+        alertCopied: "✅ In Zwischenablage kopiert!",
+        alertCopyFail: "⚠️ Kopieren fehlgeschlagen.",
+        alertSubmitFail: "⚠️ Fehler beim Absenden. Bitte erneut versuchen oder per WhatsApp kontaktieren.",
+        labels: { name:"Name / Künstlername", age:"Alter", height:"Größe", nationality:"Nationalität", location:"Land / Stadt", job:"Job / Beschäftigung", longterm_goal:"Langfristiges Ziel", income_goal:"Einkommensziel", hours_per_day:"Stunden/Tag", availability:"Verfügbarkeit", no_gos:"No-Gos", hobbies:"Hobbys", talents:"Talente", pets:"Haustiere", locations:"Besondere Locations", special_items:"Besondere Gegenstände", phone_model:"Handy-Modell", equipment_list:"Equipment", quiet_space:"Ruhiger Raum", outfits:"Outfits bereit", platforms:"Plattformen", social_links:"Social Links", has_onlyfans:"Hat OnlyFans", onlyfans_link:"OnlyFans Link", existing_content:"Bestehender Content", agency_before:"Agentur vorher", agency_experience:"Agentur-Erfahrung", anything_else:"Sonstiges" },
+        sectionTitles: ["1️⃣ Persönliche Informationen","2️⃣ Ziele & Verfügbarkeit","3️⃣ Was macht dich einzigartig?","4️⃣ Equipment & Content-Stil","5️⃣ Social Media & Content","6️⃣ Weitere Infos"],
+        ph_name:"z.B. Sofia Rose", ph_height:"z.B. 165 cm", ph_nationality:"z.B. Deutsch", ph_location:"z.B. Deutschland, Berlin", ph_job:"z.B. Studentin, Kellnerin", ph_goal:"z.B. finanzielle Freiheit, Vollzeit Creator...", ph_income:"z.B. 2.000€ realistisch / 10.000€ Traumziel", ph_nogos:"z.B. kein Gesicht, keine bestimmten Handlungen...", ph_hobbies:"z.B. Fitness, Kochen, Reisen...", ph_talents:"Alles zählt!", ph_pets:"z.B. Golden Retriever, zwei Katzen...", ph_locations:"z.B. Dachterrasse, privater Pool...", ph_special:"z.B. Vintage-Motorrad, Flügel...", ph_phone:"z.B. iPhone 14 Pro", ph_social:"z.B. instagram.com/username", ph_of:"onlyfans.com/deinname", ph_agency:"Erzähl uns von deiner Erfahrung...", ph_else:"Teile gerne alles Relevante..."
+    },
+    es: {
+        headerSub: "¡Por favor responde todas las preguntas con cuidado — esto nos ayuda a crear la mejor estrategia para ti!",
+        progress: (c,t) => `Sección ${c} de ${t}`,
+        s1: "1️⃣ Información Personal",
+        s2: "2️⃣ Metas & Disponibilidad",
+        s3: "3️⃣ ¿Qué te hace única?",
+        s3hint: "¡Piensa en todo lo que es especial en ti — no importa qué tan pequeño parezca!",
+        s4: "4️⃣ Equipo & Estilo de Contenido",
+        s5: "5️⃣ Redes Sociales & Contenido",
+        s6: "6️⃣ Información Adicional",
+        q1:  "1. ¿Cuál es tu nombre / nombre artístico? *",
+        q2:  "2. ¿Cuántos años tienes? *",
+        q3:  "3. ¿Cuánto mides? *",
+        q4:  "4. ¿Cuál es tu nacionalidad? *",
+        q5:  "5. ¿Dónde vives actualmente? (País / Ciudad) *",
+        q6:  "6. ¿Cuál es tu trabajo / ocupación actual?",
+        q7:  "7. ¿Cuál es tu objetivo a largo plazo con OnlyFans? *",
+        q8:  "8. ¿Qué ingreso mensual te gustaría alcanzar? (realista y meta soñada) *",
+        q9:  "9. ¿Cuántas horas al día puedes dedicarle a OF? *",
+        q10: "10. ¿Cómo es tu horario diario? ¿Cuándo estás más disponible? *",
+        q11: "11. ¿Cuáles son tus No-Gos absolutos en OF y redes sociales? *",
+        q12: "12. ¿Cuáles son tus hobbies, intereses o pasiones?",
+        q13: "13. ¿Tienes talentos o habilidades especiales para el contenido? (baile, cocina, acento, humor…)",
+        q14: "14. ¿Tienes mascotas? Si es así, ¿cuáles? 🐾",
+        q15: "15. ¿Tienes acceso a ubicaciones especiales? (piscina, playa, gimnasio, parajes naturales…)",
+        q16: "16. ¿Tienes objetos, gadgets o accesorios especiales que puedan destacar? (moto, auto deportivo, instrumento…)",
+        q17: "17. ¿Qué teléfono usas actualmente? (modelo y calidad de cámara) *",
+        q18: "18. ¿Tienes equipo adicional?",
+        q_quiet: "¿Tienes un espacio tranquilo y bien iluminado para el contenido?",
+        q_outfits: "¿Tienes diferentes outfits listos?",
+        q19: "19. ¿En qué plataformas estás activa y que podemos usar para OF? (sin cuentas privadas)",
+        q20: "20. Por favor envía los links de todas tus redes sociales relevantes (IG, TikTok, Twitter, Reddit, etc.)",
+        q21: "21. ¿Ya tienes una cuenta de OnlyFans? ¡Si es así, el link por favor! *",
+        q21b: "Link de tu cuenta de OnlyFans",
+        q22: "22. ¿Tienes contenido existente que podamos usar? (fotos, videos, reels) *",
+        q23: "23. ¿Has trabajado con una agencia antes? Si es así, ¿cómo fue la experiencia? *",
+        q23b: "¿Cómo fue tu experiencia con la agencia?",
+        q24: "24. ¿Hay algo más importante que debamos saber sobre ti?",
+        please: "-- Por favor selecciona --",
+        hours: ["1–2 horas","3–4 horas","5–6 horas","7–8 horas","8+ horas"],
+        avail: ["Mañana (6–12)","Tarde (12–18)","Noche (18–24)","Madrugada (0–6)","Flexible"],
+        equipment: ["Aro de luz","Trípode","Cámara","Micrófono","Softbox","Ninguno"],
+        quiet: ["Sí","Más o menos","No"],
+        outfits: ["Sí, muchos","Sí, algunos","Todavía no"],
+        platforms: ["Instagram","TikTok","Twitter/X","Reddit","YouTube","Snapchat","Otro"],
+        yesno: ["Sí","No"],
+        existing: ["Sí, fotos y videos","Sí, solo fotos","Sí, solo videos","No"],
+        of_yes: "Sí", of_no: "No",
+        agency_yes: "Sí", agency_no: "No",
+        next: "Siguiente →", back: "← Atrás", review: "Ver Resumen →",
+        summaryTitle: "📋 Resumen",
+        edit: "✏️ Editar", copy: "📋 Copiar", submit: "✅ Enviar",
+        successTitle: "¡Enviado con éxito!",
+        successMsg: "¡Gracias! Revisaremos tu información y te contactaremos por WhatsApp en 24–48 horas.",
+        copySum: "📋 Copiar Resumen", another: "Enviar otra respuesta",
+        alertRequired: "⚠️ Por favor completa todos los campos obligatorios (*)",
+        alertCopied: "✅ ¡Copiado al portapapeles!",
+        alertCopyFail: "⚠️ Error al copiar.",
+        alertSubmitFail: "⚠️ Error al enviar. Inténtalo de nuevo o contáctanos por WhatsApp.",
+        labels: { name:"Nombre / Nombre artístico", age:"Edad", height:"Altura", nationality:"Nacionalidad", location:"País / Ciudad", job:"Trabajo / Ocupación", longterm_goal:"Meta a largo plazo", income_goal:"Meta de ingresos", hours_per_day:"Horas/día", availability:"Disponibilidad", no_gos:"No-Gos", hobbies:"Hobbies", talents:"Talentos", pets:"Mascotas", locations:"Ubicaciones especiales", special_items:"Objetos especiales", phone_model:"Modelo de teléfono", equipment_list:"Equipo", quiet_space:"Espacio tranquilo", outfits:"Outfits listos", platforms:"Plataformas", social_links:"Links sociales", has_onlyfans:"Tiene OnlyFans", onlyfans_link:"Link OnlyFans", existing_content:"Contenido existente", agency_before:"Agencia antes", agency_experience:"Experiencia con agencia", anything_else:"Algo más" },
+        sectionTitles: ["1️⃣ Información Personal","2️⃣ Metas & Disponibilidad","3️⃣ ¿Qué te hace única?","4️⃣ Equipo & Estilo de Contenido","5️⃣ Redes Sociales & Contenido","6️⃣ Información Adicional"],
+        ph_name:"Ej. Sofia Rose", ph_height:"Ej. 165 cm", ph_nationality:"Ej. Española", ph_location:"Ej. España, Madrid", ph_job:"Ej. Estudiante, Camarera", ph_goal:"Ej. libertad financiera, creadora a tiempo completo...", ph_income:"Ej. $2,000 realista / $10,000 sueño", ph_nogos:"Ej. sin cara, sin ciertos actos...", ph_hobbies:"Ej. fitness, cocina, viajes...", ph_talents:"¡Todo cuenta!", ph_pets:"Ej. golden retriever, dos gatos...", ph_locations:"Ej. terraza, piscina privada...", ph_special:"Ej. moto vintage, piano...", ph_phone:"Ej. iPhone 14 Pro", ph_social:"Ej. instagram.com/username", ph_of:"onlyfans.com/tunombre", ph_agency:"Cuéntanos tu experiencia...", ph_else:"Comparte lo que consideres relevante..."
+    },
+    fr: {
+        headerSub: "Veuillez répondre à toutes les questions soigneusement — cela nous aide à créer la meilleure stratégie pour toi !",
+        progress: (c,t) => `Section ${c} sur ${t}`,
+        s1: "1️⃣ Informations Personnelles",
+        s2: "2️⃣ Objectifs & Disponibilité",
+        s3: "3️⃣ Qu'est-ce qui te rend unique ?",
+        s3hint: "Pense à tout ce qui est spécial chez toi — peu importe à quel point cela semble petit !",
+        s4: "4️⃣ Équipement & Style de Contenu",
+        s5: "5️⃣ Réseaux Sociaux & Contenu",
+        s6: "6️⃣ Informations Supplémentaires",
+        q1:  "1. Quel est ton nom / nom de scène ? *",
+        q2:  "2. Quel âge as-tu ? *",
+        q3:  "3. Quelle est ta taille ? *",
+        q4:  "4. Quelle est ta nationalité ? *",
+        q5:  "5. Où vis-tu actuellement ? (Pays / Ville) *",
+        q6:  "6. Quel est ton emploi / occupation actuel ?",
+        q7:  "7. Quel est ton objectif à long terme avec OnlyFans ? *",
+        q8:  "8. Quel revenu mensuel souhaites-tu atteindre ? (réaliste & objectif de rêve) *",
+        q9:  "9. Combien d'heures par jour peux-tu consacrer à OF ? *",
+        q10: "10. Comment est ton emploi du temps quotidien ? Quand es-tu le plus disponible ? *",
+        q11: "11. Quels sont tes No-Gos absolus sur OF et les réseaux sociaux ? *",
+        q12: "12. Quels sont tes hobbies, intérêts ou passions ?",
+        q13: "13. As-tu des talents ou compétences spéciaux pour le contenu ? (danse, cuisine, accent, humour…)",
+        q14: "14. As-tu des animaux de compagnie ? Si oui, lesquels ? 🐾",
+        q15: "15. As-tu accès à des lieux spéciaux ? (piscine, plage, salle de sport, spots nature…)",
+        q16: "16. As-tu des objets, gadgets ou accessoires spéciaux qui pourraient se démarquer ? (moto, voiture de sport, instrument…)",
+        q17: "17. Quel téléphone utilises-tu ? (modèle et qualité de caméra) *",
+        q18: "18. As-tu de l'équipement supplémentaire ?",
+        q_quiet: "As-tu un espace calme et bien éclairé pour le contenu ?",
+        q_outfits: "As-tu différentes tenues prêtes ?",
+        q19: "19. Sur quelles plateformes es-tu active que nous pouvons utiliser pour OF ? (pas de comptes privés)",
+        q20: "20. Envoie les liens de tous tes comptes de réseaux sociaux pertinents (IG, TikTok, Twitter, Reddit, etc.)",
+        q21: "21. As-tu déjà un compte OnlyFans ? Si oui, le lien s'il te plaît ! *",
+        q21b: "Lien du compte OnlyFans",
+        q22: "22. As-tu du contenu existant que nous pouvons utiliser ? (photos, vidéos, reels) *",
+        q23: "23. As-tu déjà travaillé avec une agence ? Si oui, quelle était ton expérience ? *",
+        q23b: "Quelle était ton expérience avec l'agence ?",
+        q24: "24. Y a-t-il autre chose d'important que nous devrions savoir sur toi ?",
+        please: "-- Veuillez sélectionner --",
+        hours: ["1–2 heures","3–4 heures","5–6 heures","7–8 heures","8+ heures"],
+        avail: ["Matin (6–12)","Après-midi (12–18)","Soir (18–24)","Nuit (0–6)","Flexible"],
+        equipment: ["Anneau lumineux","Trépied","Caméra","Microphone","Softbox","Aucun"],
+        quiet: ["Oui","En partie","Non"],
+        outfits: ["Oui, beaucoup","Oui, quelques-unes","Pas encore"],
+        platforms: ["Instagram","TikTok","Twitter/X","Reddit","YouTube","Snapchat","Autre"],
+        yesno: ["Oui","Non"],
+        existing: ["Oui, photos & vidéos","Oui, photos seulement","Oui, vidéos seulement","Non"],
+        of_yes: "Oui", of_no: "Non",
+        agency_yes: "Oui", agency_no: "Non",
+        next: "Suivant →", back: "← Retour", review: "Voir le Résumé →",
+        summaryTitle: "📋 Résumé",
+        edit: "✏️ Modifier", copy: "📋 Copier", submit: "✅ Envoyer",
+        successTitle: "Envoyé avec succès !",
+        successMsg: "Merci ! Nous examinerons tes informations et te recontacterons via WhatsApp dans 24–48 heures.",
+        copySum: "📋 Copier le Résumé", another: "Soumettre une autre réponse",
+        alertRequired: "⚠️ Veuillez remplir tous les champs obligatoires (marqués avec *)",
+        alertCopied: "✅ Copié dans le presse-papiers !",
+        alertCopyFail: "⚠️ Échec de la copie.",
+        alertSubmitFail: "⚠️ Échec de l'envoi. Réessaie ou contacte-nous via WhatsApp.",
+        labels: { name:"Nom / Nom de scène", age:"Âge", height:"Taille", nationality:"Nationalité", location:"Pays / Ville", job:"Emploi / Occupation", longterm_goal:"Objectif à long terme", income_goal:"Objectif de revenus", hours_per_day:"Heures/jour", availability:"Disponibilité", no_gos:"No-Gos", hobbies:"Hobbies", talents:"Talents", pets:"Animaux", locations:"Lieux spéciaux", special_items:"Objets spéciaux", phone_model:"Modèle de téléphone", equipment_list:"Équipement", quiet_space:"Espace calme", outfits:"Tenues prêtes", platforms:"Plateformes", social_links:"Liens sociaux", has_onlyfans:"A OnlyFans", onlyfans_link:"Lien OnlyFans", existing_content:"Contenu existant", agency_before:"Agence avant", agency_experience:"Expérience agence", anything_else:"Autre chose" },
+        sectionTitles: ["1️⃣ Informations Personnelles","2️⃣ Objectifs & Disponibilité","3️⃣ Qu'est-ce qui te rend unique ?","4️⃣ Équipement & Style de Contenu","5️⃣ Réseaux Sociaux & Contenu","6️⃣ Informations Supplémentaires"],
+        ph_name:"Ex. Sofia Rose", ph_height:"Ex. 165 cm", ph_nationality:"Ex. Française", ph_location:"Ex. France, Paris", ph_job:"Ex. Étudiante, Serveuse", ph_goal:"Ex. liberté financière, créatrice à plein temps...", ph_income:"Ex. 2 000€ réaliste / 10 000€ de rêve", ph_nogos:"Ex. pas de visage, pas certains actes...", ph_hobbies:"Ex. fitness, cuisine, voyages...", ph_talents:"Tout compte !", ph_pets:"Ex. golden retriever, deux chats...", ph_locations:"Ex. toit-terrasse, piscine privée...", ph_special:"Ex. moto vintage, piano...", ph_phone:"Ex. iPhone 14 Pro", ph_social:"Ex. instagram.com/username", ph_of:"onlyfans.com/tonnom", ph_agency:"Raconte-nous ton expérience...", ph_else:"Partage tout ce que tu juges pertinent..."
+    }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let lang = 'en';
+let currentSec = 1;
+const TOTAL = 6;
+const checks = { equipment_list:[], platforms:[] };
+const REQUIRED = {
+    1:['name','age','height','nationality','location'],
+    2:['longterm_goal','income_goal','hours_per_day','availability','no_gos'],
+    3:[],
+    4:['phone_model','quiet_space','outfits'],
+    5:['existing_content'],
+    6:['agency_before']
+};
+const FIELDS_BY_SECTION = [
+    ['name','age','height','nationality','location','job'],
+    ['longterm_goal','income_goal','hours_per_day','availability','no_gos'],
+    ['hobbies','talents','pets','locations','special_items'],
+    ['phone_model','equipment_list','quiet_space','outfits'],
+    ['platforms','existing_content'],
+    ['agency_before','agency_experience','anything_else']
+];
+
+function chooseLang(l) {
+    document.getElementById('langSplash').classList.add('hidden');
+    document.getElementById('formContent').classList.remove('hidden');
+    setLang(l);
+}
+
+function backToLang() {
+    document.getElementById('formContent').classList.add('hidden');
+    document.getElementById('langSplash').classList.remove('hidden');
+    document.getElementById('langDropdown').value = '';
+}
+
+function setLang(l) {
+    lang = l;
+    applyTranslations();
+}
+
+function applyTranslations() {
+    const t = T[lang];
+    document.getElementById('headerSub').textContent = t.headerSub;
+    const clb = document.getElementById('changeLangBtn');
+    if (clb) clb.textContent = {en:'← Change language', de:'← Sprache ändern', es:'← Cambiar idioma', fr:'← Changer de langue'}[lang] || '← Change language';
+    updateProgress();
+
+    // Section headers
+    ['s1','s2','s3','s4','s5','s6'].forEach((id,i) => {
+        const el = document.getElementById(id+'header');
+        if (el) el.textContent = t['s'+(i+1)];
+    });
+    const hint = document.getElementById('s3hint');
+    if (hint) hint.textContent = t.s3hint;
+
+    // Questions
+    for (let i=1; i<=24; i++) {
+        const el = document.getElementById('q'+i);
+        if (el) el.textContent = t['q'+i] || '';
+    }
+    const qc = document.getElementById('q23b'); if(qc) qc.textContent = t.q23b;
+    const qq = document.getElementById('ql_quiet'); if(qq) qq.textContent = t.q_quiet;
+    const qo = document.getElementById('ql_outfits'); if(qo) qo.textContent = t.q_outfits;
+
+    // Placeholders
+    const ph = { name:'ph_name', height:'ph_height', nationality:'ph_nationality', location:'ph_location', job:'ph_job', longterm_goal:'ph_goal', income_goal:'ph_income', no_gos:'ph_nogos', hobbies:'ph_hobbies', talents:'ph_talents', pets:'ph_pets', locations:'ph_locations', special_items:'ph_special', phone_model:'ph_phone', agency_experience:'ph_agency', anything_else:'ph_else' };
+    Object.entries(ph).forEach(([id, key]) => { const el=document.getElementById(id); if(el) el.placeholder = t[key]||''; });
+
+    // Dropdowns
+    buildSelect('hours_per_day', t.hours, t.please);
+    buildSelect('availability', t.avail, t.please);
+    buildSelect('quiet_space', t.quiet, t.please);
+    buildSelect('outfits', t.outfits, t.please);
+    buildSelect('existing_content', t.existing, t.please);
+    buildSelect('agency_before', t.yesno, t.please);
+
+    // Pills
+    buildPills('equipment_list', t.equipment);
+    buildPills('platforms', t.platforms);
+
+    // Buttons
+    document.getElementById('btn1next').textContent = t.next;
+    document.getElementById('btn2back').textContent = t.back;
+    document.getElementById('btn2next').textContent = t.next;
+    document.getElementById('btn3back').textContent = t.back;
+    document.getElementById('btn3next').textContent = t.next;
+    document.getElementById('btn4back').textContent = t.back;
+    document.getElementById('btn4next').textContent = t.next;
+    document.getElementById('btn5back').textContent = t.back;
+    document.getElementById('btn5next').textContent = t.next;
+    document.getElementById('btn6back').textContent = t.back;
+    document.getElementById('btn6next').textContent = t.review;
+    document.getElementById('summaryTitle').textContent = t.summaryTitle;
+    document.getElementById('btnEdit').textContent = t.edit;
+    document.getElementById('btnCopy').textContent = t.copy;
+    document.getElementById('btnSubmit').textContent = t.submit;
+    document.getElementById('successTitle').textContent = t.successTitle;
+    document.getElementById('successMsg').textContent = t.successMsg;
+    document.getElementById('btnCopy2').textContent = t.copySum;
+    document.getElementById('btnAnother').textContent = t.another;
+}
+
+function buildSelect(id, options, placeholder) {
+    const sel = document.getElementById(id);
+    if (!sel) return;
+    const current = sel.value;
+    sel.innerHTML = `<option value="">${placeholder}</option>` + options.map(o => `<option value="${o}"${current===o?' selected':''}>${o}</option>`).join('');
+}
+
+function buildPills(groupId, options) {
+    const container = document.getElementById(groupId);
+    if (!container) return;
+    const selected = checks[groupId] || [];
+    // Remap: keep selected values by position if language changed
+    checks[groupId] = [];
+    container.innerHTML = options.map((o,i) => `
+        <div class="pill${selected.length > i && selected[i] ? ' checked':''}" data-val="${o}" onclick="togglePill(this,'${groupId}')">
+            <span class="pill-box">
+                <svg class="checkmark" width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>${o}
+        </div>`).join('');
+}
+
+function updateProgress() {
+    const t = T[lang];
+    document.getElementById('progressFill').style.width = (currentSec/TOTAL*100)+'%';
+    document.getElementById('progressText').textContent = t.progress(currentSec, TOTAL);
+}
+
+function togglePill(el, group) {
+    const val = el.dataset.val;
+    if (checks[group].includes(val)) { checks[group]=checks[group].filter(v=>v!==val); el.classList.remove('checked'); }
+    else { checks[group].push(val); el.classList.add('checked'); }
+}
+
+function toggleOF() {
+    const val = document.getElementById('has_onlyfans').value;
+    const t = T[lang];
+    document.getElementById('onlyfans_link_field').classList.toggle('hidden', val !== t.of_yes);
+}
+
+function toggleAgency() {
+    const val = document.getElementById('agency_before').value;
+    const t = T[lang];
+    document.getElementById('agency_exp_field').classList.toggle('hidden', val !== t.agency_yes);
+}
+
+// Map of localised option values -> English equivalents
+const EN_VALUES = {};
+function buildEnMap() {
+    const en = T['en'];
+    const keys = ['hours','avail','quiet','outfits','yesno','existing','equipment','platforms'];
+    ['de','es','fr'].forEach(l => {
+        keys.forEach(k => {
+            T[l][k].forEach((v, i) => { EN_VALUES[v] = en[k][i]; });
         });
+    });
+}
+buildEnMap();
 
-        // Allow Enter key to submit
-        languageSelect.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && this.value) {
-                goToForm();
-            }
-        });
+function toEnglish(val) {
+    if (!val) return val;
+    // For comma-separated pill values
+    if (val.includes(', ')) return val.split(', ').map(v => EN_VALUES[v] || v).join(', ');
+    return EN_VALUES[val] || val;
+}
 
-        function goToForm() {
-            const language = languageSelect.value;
-            
-            if (language === 'en') {
-                window.location.href = 'creator-onboarding-english.html';
-            } else if (language === 'de') {
-                window.location.href = 'creator-onboarding-german.html';
-            }
+function getVal(id) {
+    if (id in checks) return checks[id].join(', ');
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+}
+
+function getEnVal(id) {
+    const v = getVal(id);
+    return toEnglish(v);
+}
+
+function validate(secNum) {
+    const t = T[lang];
+    for (const id of (REQUIRED[secNum]||[])) {
+        if (!getVal(id)) {
+            const el = document.getElementById(id);
+            if (el) { el.style.borderColor='#e53e3e'; el.focus(); }
+            alert(t.alertRequired);
+            return false;
         }
+    }
+    (REQUIRED[secNum]||[]).forEach(id => { const el=document.getElementById(id); if(el) el.style.borderColor='#e2e8f0'; });
+    return true;
+}
 
-        // Auto-detect language on page load
-        detectLanguage();
-    </script>
+function goTo(from, to) {
+    if (to > from && !validate(from)) return;
+    document.getElementById('sec'+from).classList.add('hidden');
+    document.getElementById('sec'+to).classList.remove('hidden');
+    currentSec=to; updateProgress(); window.scrollTo(0,0);
+}
+
+function showSummary() {
+    if (!validate(6)) return;
+    const t = T[lang];
+    let html = '';
+    FIELDS_BY_SECTION.forEach((fields, i) => {
+        const rows = fields.map(id => {
+            const v = getVal(id); if (!v) return '';
+            return `<div class="summary-row"><span class="summary-label">${t.labels[id]||id}</span><span class="summary-val">${v}</span></div>`;
+        }).filter(Boolean).join('');
+        if (rows) html += `<div class="summary-block"><h3>${t.sectionTitles[i]}</h3>${rows}</div>`;
+    });
+    document.getElementById('summaryContent').innerHTML = html;
+    document.getElementById('sec6').classList.add('hidden');
+    document.getElementById('secSummary').classList.remove('hidden');
+    window.scrollTo(0,0);
+}
+
+function editForm() {
+    document.getElementById('secSummary').classList.add('hidden');
+    document.getElementById('sec1').classList.remove('hidden');
+    currentSec=1; updateProgress(); window.scrollTo(0,0);
+}
+
+async function submitForm() {
+    const t = T[lang];
+    const payload = { lang: 'en', timestamp: new Date().toISOString() };
+    FIELDS_BY_SECTION.forEach(fields => fields.forEach(id => {
+        payload[id] = id in checks
+            ? checks[id].map(v => EN_VALUES[v] || v)
+            : getEnVal(id);
+    }));
+    try {
+        await fetch(SHEETS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+        document.getElementById('secSummary').classList.add('hidden');
+        document.getElementById('secSuccess').classList.remove('hidden');
+        window.scrollTo(0,0);
+    } catch(e) { alert(t.alertSubmitFail); }
+}
+
+function copyClipboard() {
+    const t = T[lang];
+    let text = '=== CREATOR ONBOARDING ===\n\n';
+    FIELDS_BY_SECTION.forEach((fields, i) => {
+        text += t.sectionTitles[i]+'\n';
+        fields.forEach(id => { const v=getVal(id); if(v) text+=`${t.labels[id]||id}: ${v}\n`; });
+        text += '\n';
+    });
+    navigator.clipboard.writeText(text).then(()=>alert(t.alertCopied)).catch(()=>alert(t.alertCopyFail));
+}
+
+// Init — wait for language selection
+</script>
 </body>
 </html>
